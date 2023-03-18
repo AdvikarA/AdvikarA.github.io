@@ -23,7 +23,8 @@ title: AdvikarA
 email: advikar2014@gmail.com
 description: >- # this means to ignore newlines until "baseurl:"
   bonk bonk bonk 
-
+baseurl: "/" # the subpath of your site, e.g. /blog
+url: "https://advikara.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: 
 github_username:  AdvikarA
 spotify_id: 31yrh2ggwqaoai6rietr3z37vwgq
