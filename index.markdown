@@ -6,6 +6,7 @@ layout: home
 title: Home
 ---
 
+<img src="/img/banner.jpg" alt="">
 
 Highschool / Massachusetts 
 
