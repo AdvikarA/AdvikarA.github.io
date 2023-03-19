@@ -4,6 +4,7 @@
 
 layout: home
 title: Home
+weight: 1
 ---
 
 <img src="/img/banner.jpg" alt="">

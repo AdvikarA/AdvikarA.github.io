@@ -2,6 +2,7 @@
 layout: page
 title: Projects
 permalink: /Projects/
+weight: 2
 ---
 
 <section class="projects" id="projects">
