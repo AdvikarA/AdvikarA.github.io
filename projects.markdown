@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Projectsssssssssssss
+title: Projects
 permalink: /Projects/
 weight: 2
 ---
