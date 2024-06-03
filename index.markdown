@@ -40,13 +40,13 @@ weight: 1
     }
   </script> 
 <p class="hover-text">Hover over me</p>
-Highschool / Massachusetts 
+College / Massachusetts 
 
 ### Who?
 <body>
   <div class="bio animate__animated animate__shakeX">
     <p class="bio-text">
-      Hi, I’m Advikar, a high schooler from Massachusetts. I like pens, rocks, stars, and deer (among other things). I wanted to try making a personal website in order to learn HTML/CSS and to hold some info and projects I’ve accumulated over the past few years. A lot of the things I’m working on are mostly comp sci focused, but I’m involved in a ton of other random stuff. If you want to contact me, I got socials somewhere below.
+      Hi, I’m Advikar, a recently graduated high schooler from Massachusetts. I like pens, rocks, stars, and deer (among other things). I wanted to try making a personal website in order to learn HTML/CSS and to hold some info and projects I’ve accumulated over the past few years. A lot of the things I’m working on are mostly comp sci focused, but I’m involved in a ton of other random stuff. If you want to contact me, I got socials somewhere below. Updated 6/3/24
     </p>
     <p class="bio-text-small">This website is pretty raw and I'm not the best at HTML/CSS so bear with</p>
   </div>
@@ -55,6 +55,8 @@ Highschool / Massachusetts
     <a href="https://github.com/{{ site.github_username }}" title="GitHub"><i class="fa-brands fa-github"></i></a>
     <a href="https://open.spotify.com/user/{{ site.spotify_id }}" title="Spotify"><i class="fa-brands fa-spotify"></i></a>
     <a href="https://discord.com/users/{{ site.discord_id }}" title="Discord"><i class="fa-brands fa-discord"></i></a>
+    <a href="https://www.linkedin.com/in/advikar-ananthkumar-79b568311/" title="Linkedin"><i class="fa-brands fa-linkedin"></i></a>
+
   </div>
 </body>
 

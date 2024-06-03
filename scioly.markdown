@@ -1,15 +1,15 @@
 ---
 layout: page
-title: SciOly
+title: High School
 permalink: /scioly/
 weight: 3
 ---
 
-### What
+### Science Olympiad
 
 <div class="scienceteam">
         <p class="blurbt">
-          Science Olympiad/Science Team has been the most influencial experience of High School for me. This page is for some notes and tests I've written. Lots of cool stuff 
+          Science Olympiad/Science Team has been the most influencial experience of High School for me. This page is for some notes and tests I've written. Lots of cool stuff. 
         </p>
       </div>
 
@@ -40,6 +40,14 @@ weight: 3
     <li>
         <a href="https://drive.google.com/drive/folders/1l8lhq-HD-iNDor_TD7ZOK2erw_JkncWF?usp=sharing" target="_blank"><i class="far fa-folder"></i></a>
     {coming soon} 2023 AB Tryouts [Astronomy]
+    </li>
+    <li>
+        <a href="https://drive.google.com/drive/folders/1c5Wruf5QfiRSeqvWs06CyEj8rMrLiv_G?usp=sharing" target="_blank"><i class="far fa-folder"></i></a>
+    2024 UMASO Invitational [Dynamic Planet]
+    </li>
+    <li>
+        <a href="https://drive.google.com/drive/folders/1kdQyV-qecgIwq3rBMoxlfr4H-2pfe6Ea?usp=sharing" target="_blank"><i class="far fa-folder"></i></a>
+    2024 UMASO Invitational [Fossils]
     </li>
 </ul>
 <h3>Bridge</h3>
