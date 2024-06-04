@@ -30,7 +30,7 @@ weight: 4
     <div class="content2">
       <div>
         <h2>Noctem Development</h2>
-        <p>Noctem Development is a student led organziation that holds computing competitions that promote computer science and problem solving. Our competitions feature algorithmic problems that are entirely original and challenge participants of all skill levels. We've held ___ events with over ___ participants.
+        <p>Noctem Development is a student led organziation that holds computing competitions that promote computer science and problem solving. Our competitions feature algorithmic problems that are entirely original and challenge participants of all skill levels. We've held 4+ events with over 300 participants.
         </p>
       </div>
     </div>
