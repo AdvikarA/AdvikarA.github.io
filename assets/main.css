@@ -37,10 +37,7 @@
   padding: 20px;
   margin: 10px;
 }
-.wrapper {
-  width:1200px;
-  margin:0 auto;
-}
+.wrapper { max-width: -webkit-calc(1200px - (30px * 2)); max-width: calc(1200px - (30px * 2)); margin-right: auto; margin-left: auto; padding-right: 30px; padding-left: 30px; }
 
 .section {
   width:1200px;
