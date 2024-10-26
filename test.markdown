@@ -3,6 +3,7 @@ layout: page
 title: Groups
 permalink: /Groups/
 weight: 4
+nav_exclude: true 
 ---
 ### Organizations
 <div class="intro">

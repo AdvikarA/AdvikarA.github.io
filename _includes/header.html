@@ -1,5 +1,4 @@
 <header class="site-header">
-
   <div class="wrapper">
     {%- assign default_paths = site.pages | map: "path" -%}
     {%- assign page_paths = site.header_pages | default: default_paths -%}
@@ -20,7 +19,7 @@
         <div class="trigger">
           {%- assign pages = site.pages | sort: 'weight' -%}
             {%- for page in pages -%}
-                {%- if page_paths contains page.path -%}
+                {%- if page_paths contains page.path and page.nav_exclude != true -%}  <!-- Check for nav_exclude -->
                     {%- unless page.exclude -%}
                         <a class="page-link" href="{{ page.url | relative_url }}">{{ page.title | escape }}</a>
                     {%- endunless -%}

@@ -3,6 +3,7 @@ layout: page
 title: High School
 permalink: /scioly/
 weight: 3
+nav_exclude: true 
 ---
 
 ### Science Olympiad

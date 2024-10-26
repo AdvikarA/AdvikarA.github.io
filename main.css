@@ -332,3 +332,4 @@ table td { border: 1px solid #e8e8e8; }
 .inline-icon { padding: 10px; }
 .inline-icon a i::before { color: var(--global-theme-color); transition-property: all 0.2s ease-in-out; }
 .inline-icon a:hover i::before { color: var(--global-text-color); }
+ 
