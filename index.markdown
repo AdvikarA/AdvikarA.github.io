@@ -59,7 +59,7 @@ weight: 1
       <h3>Stuff I'm working on right now</h3>
       <ul>
         <li>Quantum Computing AI/ML Project</li>
-        <li>Member of Harvard Tech for Social Good Project to build AI webscraper for Ample Harvest</li>
+        <li>Project to build AI webscraper for Ample Harvest</li>
       </ul>
     </div>
 
