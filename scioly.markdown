@@ -28,19 +28,19 @@ nav_exclude: true
     </li>
     <li>
         <a href="https://drive.google.com/drive/folders/1l8lhq-HD-iNDor_TD7ZOK2erw_JkncWF?usp=sharing" target="_blank"><i class="far fa-folder"></i></a>
-    {coming soon} 2023 AB Tryouts [Dynamic Planet]
+    2023 AB Tryouts [Dynamic Planet]
     </li>
     <li>
         <a href="https://drive.google.com/drive/folders/1l8lhq-HD-iNDor_TD7ZOK2erw_JkncWF?usp=sharing" target="_blank"><i class="far fa-folder"></i></a>
-    {coming soon} 2023 AB Tryouts [Fossils]
+    2023 AB Tryouts [Fossils]
     </li>
     <li>
         <a href="https://drive.google.com/drive/folders/1l8lhq-HD-iNDor_TD7ZOK2erw_JkncWF?usp=sharing" target="_blank"><i class="far fa-folder"></i></a>
-    {coming soon} 2023 AB Tryouts [Geologic Mapping]
+   2023 AB Tryouts [Geologic Mapping]
     </li>
     <li>
         <a href="https://drive.google.com/drive/folders/1l8lhq-HD-iNDor_TD7ZOK2erw_JkncWF?usp=sharing" target="_blank"><i class="far fa-folder"></i></a>
-    {coming soon} 2023 AB Tryouts [Astronomy]
+   2023 AB Tryouts [Astronomy]
     </li>
     <li>
         <a href="https://drive.google.com/drive/folders/1c5Wruf5QfiRSeqvWs06CyEj8rMrLiv_G?usp=sharing" target="_blank"><i class="far fa-folder"></i></a>
