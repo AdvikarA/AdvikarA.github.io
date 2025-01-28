@@ -58,8 +58,7 @@ weight: 1
     <div class="box animate__animated">
       <h3>Stuff I'm working on right now</h3>
       <ul>
-        <li>Quantum Computing AI/ML Project</li>
-        <li>Project to build AI webscraper for Ample Harvest</li>
+        <li>tbd</li>
       </ul>
     </div>
 
@@ -67,10 +66,11 @@ weight: 1
     <div class="box animate__animated">
       <h3>Stuff I'm trying to learn right now</h3>
       <ul>
-        <li>Intro to Finance + Quant</li>
-        <li>Quantum Computing</li>
         <li>Ventures/Startups</li>
         <li>Datastructures + Algos for recruiting</li>
+        <li>Quantum Computing</li>
+        <li>Machine Learning Proficiency</li>
+
       </ul>
     </div>
   </div>
