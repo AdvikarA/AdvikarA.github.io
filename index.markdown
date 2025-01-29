@@ -40,7 +40,7 @@ weight: 1
   <!-- Left Column - Who Section -->
   <div class="box left-column bio animate__animated animate__shakeX">
     <p class="bio-text">
-      Hi, I’m <strong>Advikar</strong>, an undergraduate attending <strong>Harvard University</strong>. Currently, I'm interested in Software and AI/Machine Learning. I like pens, rocks, stars, and deer (among other things). I wanted to try making a personal website in order to learn HTML/CSS and to hold some info and projects I’ve accumulated over the past few years. A lot of the things I’m working on are mostly comp sci focused, but I’m involved in a ton of other random stuff. If you want to contact me, I got socials somewhere below. Updated 6/3/24
+      Hi, I’m <strong>Advikar</strong>, an undergraduate attending <strong>Harvard University</strong>. Currently, I'm interested in Software and AI/Machine Learning. I like pens, rocks, stars, and deer (among other things). I wanted to try making a personal website in order to learn HTML/CSS and to hold some info and projects I’ve accumulated over the past few years. A lot of the things I’m working on are mostly comp sci focused, but I’m involved in a ton of other random stuff. If you want to contact me, I got socials somewhere below. Updated 1/27/25
     </p>
     <p class="bio-text-small">This website is pretty raw and I'm not the best at HTML/CSS so bear with</p>
 
