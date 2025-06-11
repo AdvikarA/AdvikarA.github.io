@@ -1,5 +1,11 @@
 // Header Navigation Functionality
 
+// Create a global event for planet navigation that simple-space.js can listen for
+window.requestPlanetNavigation = function(planetName) {
+    const event = new CustomEvent('requestPlanetNavigation', { detail: { planet: planetName } });
+    document.dispatchEvent(event);
+};
+
 document.addEventListener('DOMContentLoaded', function() {
     // Get navigation elements
     const navToggle = document.querySelector('.nav-toggle');
@@ -66,12 +72,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 spans[2].style.transform = 'none';
             }
             
-            // Navigate to the planet using the existing navigateToPlanet function
-            if (typeof window.navigateToPlanet === 'function') {
-                window.navigateToPlanet(planetName);
-            } else {
-                console.error('navigateToPlanet function not found');
-            }
+            // Use our custom event system to request planet navigation
+            window.requestPlanetNavigation(planetName);
         });
     });
     

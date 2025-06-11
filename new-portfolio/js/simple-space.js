@@ -14,6 +14,14 @@ const canvas = document.querySelector('canvas.webgl');
 const scene = new THREE.Scene();
 scene.background = new THREE.Color(0x000814);
 
+// Listen for navigation requests from header-nav.js
+document.addEventListener('requestPlanetNavigation', function(event) {
+    const planetName = event.detail.planet;
+    if (typeof window.navigateToPlanet === 'function') {
+        window.navigateToPlanet(planetName);
+    }
+});
+
 // Loading screen handling
 document.addEventListener('DOMContentLoaded', () => {
     // Hide loading screen after a delay AND once DOM is ready
