@@ -2,53 +2,51 @@
 
 .work-panel h1 {
     font-family: 'Orbitron', sans-serif;
-    font-size: 1.4rem; /* Reduced by 50% */
-    margin-bottom: 0.25rem; /* Reduced by 50% */
+    font-size: 2.8rem;
+    margin-bottom: 0.5rem;
     color: #fff;
     font-weight: 700;
-    letter-spacing: -0.25px; /* Reduced by 50% */
+    letter-spacing: -0.5px;
 }
 
 .work-panel h2 {
     font-family: 'Orbitron', sans-serif;
-    font-size: 0.9rem; /* Reduced by 50% */
-    margin-bottom: 1rem; /* Reduced by 50% */
+    font-size: 1.8rem;
+    margin-bottom: 2rem;
     color: #aaa;
     font-weight: 500;
 }
 
 .work-section {
-    margin-bottom: 1.25rem; /* Reduced by 50% */
+    margin-bottom: 2.5rem;
 }
 
 .work-section h3 {
     font-family: 'Orbitron', sans-serif;
-    font-size: 0.75rem; /* Reduced by 50% */
-    margin-bottom: 0.75rem; /* Reduced by 50% */
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
     color: #5d9cec;
-    border-bottom: 0.5px solid rgba(93, 156, 236, 0.3); /* Reduced by 50% */
-    padding-bottom: 0.25rem; /* Reduced by 50% */
+    border-bottom: 1px solid rgba(93, 156, 236, 0.3);
+    padding-bottom: 0.5rem;
 }
 
 .activity-items {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); /* Reduced by 50% */
-    gap: 0.75rem; /* Reduced by 50% */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
 }
 
 .activity-item {
     background-color: rgba(10, 20, 40, 0.5);
-    border: 0.5px solid rgba(93, 156, 236, 0.2); /* Reduced by 50% */
-    border-radius: 4px; /* Reduced by 50% */
-    padding: 0.75rem; /* Reduced by 50% */
+    border: 1px solid rgba(93, 156, 236, 0.2);
+    border-radius: 8px;
+    padding: 1.5rem;
     transition: all 0.3s ease;
-    transform: scale(0.5); /* Scale down by 50% */
-    transform-origin: top left; /* Keep it aligned to the top left */
 }
 
 .activity-item:hover {
-    transform: translateY(-2.5px) scale(0.5); /* Reduced by 50% while maintaining scale */
-    box-shadow: 0 2.5px 7.5px rgba(93, 156, 236, 0.2); /* Reduced by 50% */
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(93, 156, 236, 0.2);
     border-color: rgba(93, 156, 236, 0.4);
 }
 
