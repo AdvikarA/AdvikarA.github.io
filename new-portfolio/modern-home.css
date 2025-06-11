@@ -1,0 +1,167 @@
+/* Modern Home Panel Styling - Inspired by Brian Zhou's website */
+
+/* Main heading styles */
+.home-panel h1 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 2.8rem;
+    margin-bottom: 0.5rem;
+    color: #fff;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    display: none; /* Hide original headings when using typing animation */
+}
+
+.home-panel h2 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.8rem;
+    margin-bottom: 2rem;
+    color: #aaa;
+    font-weight: 500;
+    display: none; /* Hide original headings when using typing animation */
+}
+
+.highlight {
+    color: #5d9cec;
+    position: relative;
+}
+
+.highlight::after {
+    content: '';
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: #5d9cec;
+    opacity: 0.6;
+}
+
+/* Paragraph styles */
+.home-panel p {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 1.2rem;
+    color: #e0e0ff;
+}
+
+.intro-text {
+    font-size: 1.1rem;
+    color: #fff;
+    margin-bottom: 1.5rem;
+    margin-top: 3rem; /* Add space after typing animation */
+}
+
+/* Social links */
+.social-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    margin: 2rem 0;
+}
+
+.social-links a {
+    color: #5d9cec;
+    text-decoration: none;
+    font-family: 'Roboto', sans-serif;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    transition: all 0.3s ease;
+}
+
+.social-links a i {
+    margin-right: 0.5rem;
+    font-size: 1.2rem;
+}
+
+.social-links a:hover {
+    color: #fff;
+    transform: translateY(-2px);
+}
+
+/* Highlighted work section */
+.highlighted-work {
+    margin-top: 2.5rem;
+    border-top: 1px solid rgba(93, 156, 236, 0.3);
+    padding-top: 1.5rem;
+}
+
+.highlighted-work h3 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    color: #5d9cec;
+}
+
+.work-items {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+}
+
+.work-item {
+    background-color: rgba(10, 20, 40, 0.5);
+    border: 1px solid rgba(93, 156, 236, 0.2);
+    border-radius: 8px;
+    padding: 1.2rem;
+    transition: all 0.3s ease;
+}
+
+.work-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(93, 156, 236, 0.2);
+    border-color: rgba(93, 156, 236, 0.4);
+}
+
+.work-item h5 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.1rem;
+    margin-bottom: 0.8rem;
+    color: #fff;
+}
+
+.work-item p {
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+    color: #ccc;
+}
+
+.work-link {
+    display: inline-block;
+    color: #5d9cec;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    position: relative;
+}
+
+.work-link::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background-color: #5d9cec;
+    transition: width 0.3s ease;
+}
+
+.work-link:hover::after {
+    width: 100%;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .home-panel h1 {
+        font-size: 2.2rem;
+    }
+    
+    .home-panel h2 {
+        font-size: 1.5rem;
+    }
+    
+    .work-items {
+        grid-template-columns: 1fr;
+    }
+}

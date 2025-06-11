@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NewsAI - Reimagining News Consumption</title>
+    
+    <style>
+        /* Additional styles for the image gallery */
+        .image-gallery {
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+            margin: 30px 0;
+        }
+        
+        .gallery-item {
+            flex: 1;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+            background: #222;
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 250px; /* Fixed height for all images */
+            display: block;
+            object-fit: cover; /* Ensures images maintain aspect ratio while filling the container */
+            object-position: center; /* Centers the image within the container */
+        }
+        
+        .gallery-caption {
+            background: linear-gradient(transparent, rgba(0,0,0,0.7));
+            color: white;
+            padding: 10px;
+            text-align: center;
+            font-weight: 500;
+        }
+        
+        @media (max-width: 768px) {
+            .image-gallery {
+                flex-direction: column;
+            }
+        }
+    </style>
+    
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #1a1a1a;
+            color: #e0e0e0;
+        }
+        
+        .container {
+            background: #2a2a2a;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+        
+        h2 {
+            color: #3498db;
+            font-size: 2.2em;
+            margin-bottom: 20px;
+            text-align: center;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 10px;
+        }
+        
+        h3 {
+            color: #e0e0e0;
+            font-size: 1.5em;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+        
+        p {
+            color: #c0c0c0;
+            margin-bottom: 15px;
+        }
+        
+        ul {
+            color: #c0c0c0;
+            margin-bottom: 20px;
+        }
+        
+        li {
+            margin-bottom: 8px;
+        }
+        
+        .role-highlight {
+            background-color: #1e3a50;
+            border-left: 4px solid #3498db;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 5px 5px 0;
+            font-size: 16px;
+            color: #e0e0e0;
+        }
+        
+        .skills-section {
+            background-color: #1e3a50;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 30px;
+            border-left: 4px solid #3498db;
+            color: #e0e0e0;
+        }
+        
+        .github-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #24292e, #1a1e22);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            margin: 30px auto;
+            box-shadow: 0 4px 15px rgba(36, 41, 46, 0.3);
+            border: none;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+            
+            h2 {
+                font-size: 1.8em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>NewsAI - Reimagining News Consumption</h2>
+        <p>A platform designed to challenge echo chambers and present news from diverse viewpoints, helping users understand different perspectives on current events.</p>
+
+        <div class="role-highlight">
+            <strong>Role:</strong> I built it
+        </div>
+
+        <!-- Image Gallery -->
+        <div class="image-gallery">
+            <div class="gallery-item">
+                <img src="/img/newsai1.png" alt="NewsAI Dashboard">
+                <div class="gallery-caption">Personalized News Dashboard</div>
+            </div>
+            
+            <div class="gallery-item">
+                <img src="/img/newsai2.png" alt="NewsAI Comparison View">
+                <div class="gallery-caption">Multi-Perspective News Analysis</div>
+            </div>
+            
+            <div class="gallery-item">
+                <img src="/img/newsai3.png" alt="NewsAI Chatbot">
+                <div class="gallery-caption">AI-Powered News Assistant</div>
+            </div>
+        </div>
+
+        <h3>Inspiration</h3>
+        <p>Today, the same news event can be covered and presented widely differently. Some of the most pressing challenges today come from our inability to debate, discuss, and reconcile with people from opposing view points. How do we find the information that all the sources agree on? What if we could stay informed on how source bias impacts news. What if we could challenge our own beliefs and avoid echo chambers? What if... News was reimagined?</p>
+
+        <h3>What it does</h3>
+        <p>NewsAI has three core functionalities:</p>
+        <ul>
+            <li><strong>Personalized News Feed:</strong> Creates a customized news feed based on a survey that users take, designed to both challenge beliefs and show relevant content</li>
+            <li><strong>Multi-Perspective Analysis:</strong> Displays information from different viewpoints, contrasting differences, highlighting similarities, and identifying sources of bias</li>
+            <li><strong>AI News Assistant:</strong> Features an embedded chatbot that summarizes the most recent news and answers questions about current events</li>
+        </ul>
+
+        <h3>How we built it</h3>
+        <p>NewsAI takes in user data through a political compass test and measures how likely the user is to engage in disagreement and debate charitably. This data helps classify the user and personalize their newsfeed to challenge their beliefs. For our general news tool which returns similarities and differences, we use NewsAPI, BraveAPI, and Claude to process recent events and analyze.</p>
+
+        <h3>Challenges we ran into</h3>
+        <ul>
+            <li>Implementing secure authentication and login systems</li>
+            <li>Efficiently fetching and caching images from various news sources</li>
+            <li>Managing API rate limits across multiple news data providers</li>
+            <li>Integrating Claude AI with Brave and NewsAPI for coherent analysis</li>
+        </ul>
+
+        <div class="skills-section">
+            <p><strong>Skills:</strong> React, Node.js, NewsAPI, BraveAPI, Claude AI Integration, Political Bias Analysis, UX/UI Design, Authentication Systems</p>
+        </div>
+        
+        <div style="text-align: center; margin-top: 30px;">
+            <a href="https://github.com/AdvikarA/anthropic-wics" target="_blank" class="github-btn">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" style="margin-right: 8px;">
+                    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                </svg>
+                View on GitHub
+            </a>
+        </div>
+    </div>
+</body>
+</html>
+</div>
+
+
+<style>
+  .github-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #24292e;
+    color: white;
+    padding: 12px 24px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 16px;
+    transition: background-color 0.3s;
+    margin: 20px auto;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  .github-btn:hover {
+    background-color: #2f363d;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+  }
+  .github-btn i {
+    margin-right: 8px;
+    font-size: 20px;
+  }
+</style>

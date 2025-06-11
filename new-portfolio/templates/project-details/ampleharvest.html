@@ -1,0 +1,29 @@
+<h2>AmpleHarvest Webscraper</h2>
+<p>AmpleHarvest works to bridge the gap between farmers/donators with excess food and local food pantries.</p>
+<p><strong>The Problem:</strong></p>
+<p>There exists discrepancies between relevant data (hours of operation, contact information) on a food pantry's website (real-time data) and the AmpleHarvest.org database. Verifying and updating all relevant data was done manually and is extremely time-intensive. Some food pantries may have multiple avenues of communication, so this makes it challenging to determine most up-to-date information.</p>
+<p><strong>Our Solution:</strong></p>
+<p>To solve this, we built a basic spider pipeline for web scraping:</p>
+<ul>
+    <li>MVP0: Basic spider pipeline for web scraping and data comparison using regex & LLM exploration including error handling, data extraction, and basic comparison scripts</li>
+    <li>MVP1: Improve MVP 0 with LLM integration for improved data extraction and accuracy in discrepancy handling between scraped data and current database</li>
+    <li>MVP2: Optimize pipeline for speed and accuracy, and reduce token usage by refining LLM input and adding geocoding API integration for address validation</li>
+</ul>
+<div style="display: flex; flex-direction: column; gap: 10px; align-items: center;">
+    <img
+        src="/img/AH2.png"
+        alt="AH2"
+        loading="lazy"
+        class="project-pic"
+        style="max-width: 900px; height: auto;"
+    />
+    <img
+        src="/img/AH3.png"
+        alt="AH3"
+        loading="lazy"
+        class="project-pic"
+        style="max-width: 900px; height: auto;"
+    />
+</div>
+<p><strong>Impact:</strong> Building the LLM-based web scraper dramatically reduces the time and cost AmpleHarvest.org spends on food pantry data verification for over 4,000 of their food pantries.</p>
+<p><strong>Skills:</strong> Python, JSON manipulation, Spider Webscraping, API integration with multiple endpoints, LLM Parsing, LLM hallucination defense, One-shot prompting, Unit testing</p>
