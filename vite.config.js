@@ -1,6 +1,6 @@
 export default {
   root: 'new-portfolio',
-  base: './',
+  base: '/new-portfolio/',  // This is crucial for GitHub Pages deployment
   build: {
     outDir: '../dist',
     emptyOutDir: true,
@@ -8,5 +8,5 @@ export default {
   server: {
     open: true
   },
-  publicDir: '../public'
+  publicDir: 'assets'
 }

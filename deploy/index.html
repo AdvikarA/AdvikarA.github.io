@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advikar Ananthkumar | Space Portfolio</title>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Orbitron:wght@400;500;700&display=swap" rel="stylesheet">
+  <script type="module" crossorigin src="/assets/index-c112c207.js"></script>
+  <link rel="stylesheet" href="/assets/index-c205f3ea.css">
+</head>
+<body>
+    <!-- Navigation Header Bar -->
+    <header class="nav-header">
+        <div class="nav-logo">
+            <h1>Advikar Ananthkumar</h1>
+        </div>
+        <nav class="nav-links">
+            <ul>
+                <li><a href="#" data-nav-planet="home">Home</a></li>
+                <li><a href="#" data-nav-planet="projects">Projects</a></li>
+                <li><a href="#" data-nav-planet="work">Work</a></li>
+                <li><a href="#" data-nav-planet="skills">Skills</a></li>
+                <li><a href="#" data-nav-planet="about">About</a></li>
+                <li><a href="#" data-nav-planet="contact">Contact</a></li>
+                <li><a href="./simplified/index.html" class="simple-site-link">Simple Site</a></li>
+            </ul>
+        </nav>
+        <div class="nav-toggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </header>
+
+    <div class="welcome-popup" id="welcome-popup">
+        <div class="welcome-content">
+            <div class="profile-image">
+                <img src="/assets/headshot-fbfe5e18.jpeg" alt="Advikar Ananthkumar" class="headshot">
+            </div>
+            <div class="profile-container">
+                <div class="profile-text">
+                    <h1>Advikar Ananthkumar</h1>
+                    <p>Personal Website</p>
+                </div>
+            </div>
+            
+            <div class="site-toggle-container">
+                <div class="site-option space-option" id="space-option">
+                    <h3>Interactive Space</h3>
+                    <p>3D experience with planets and spaceship navigation</p>
+                </div>
+                
+                <div class="toggle-switch-container">
+                    <label class="switch">
+                        <input type="checkbox" id="site-toggle">
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+                
+                <div class="site-option simple-option" id="simple-option">
+                    <h3>Simple Site</h3>
+                    <p>Clean, static portfolio with standard navigation</p>
+                </div>
+            </div>
+            
+            <div id="space-controls" class="flight-controls-info">
+                <h3>Flight Controls</h3>
+                <div class="controls-grid">
+                    <div class="control-item">
+                        <span class="key-combo">SPACE</span>
+                        <span class="control-desc">Accelerate</span>
+                    </div>
+                    <div class="control-item">
+                        <span class="key-combo">A / D</span>
+                        <span class="control-desc">Turn Left / Right</span>
+                    </div>
+                    <div class="control-item">
+                        <span class="key-combo">SHIFT</span>
+                        <span class="control-desc">Visit Planet (when prompted)</span>
+                    </div>
+                    <div class="control-item">
+                        <span class="key-combo">ESC</span>
+                        <span class="control-desc">Exit Planet View</span>
+                    </div>
+                </div>
+            </div>
+            
+            <button id="enter-site" class="enter-button">Enter Site</button>
+        </div>
+    </div>
+    
+    <div class="loading-screen">
+        <div class="loading-content">
+            <h1>Preparing for Launch</h1>
+            <div class="progress-bar">
+                <div class="progress"></div>
+            </div>
+            <p class="loading-text">Initializing navigation systems...</p>
+        </div>
+    </div>
+
+    <div class="ui-container">
+        <div class="navigation-controls">
+            <div class="planet-selector">
+                <h3>Navigation Console</h3>
+                <ul>
+                    <li data-planet="home" class="active">Home Base</li>
+                    <li data-planet="projects">Projects</li>
+                    <li data-planet="work">Work</li>
+                    <li data-planet="skills">Skills</li>
+                    <li data-planet="about">About</li>
+                    <li data-planet="contact">Contact</li>
+                </ul>
+            </div>
+            
+            <!-- Controls Instructions Panel - Now inside navigation-controls -->
+            <div id="controls-instructions" class="controls-instructions">
+                <h3>Flight Controls</h3>
+                <ul>
+                    <li><span class="key">A/←</span> Turn Left</li>
+                    <li><span class="key">D/→</span> Turn Right</li>
+                    <li><span class="key">SPACE</span> Thrust</li>
+                    <li><span class="key">SHIFT</span> Visit Planet</li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- Restart message when ship reaches boundary -->
+        <div id="restart-message" class="restart-message">
+            <p>Press <span class="key-highlight">Q</span> to start flying again</p>
+        </div>
+        
+        
+        
+        <!-- Ship controls removed as requested -->
+        
+        <!-- Legacy portal button removed and moved to header -->
+    </div>
+    
+    <!-- Space-themed decorative elements -->
+    
+    <!-- Radar on top right -->
+    <div class="space-radar">
+        <div class="radar-scanner"></div>
+        <div class="radar-center"></div>
+        <div class="radar-rings"></div>
+    </div>
+    
+    <!-- Pilot chat button -->
+    <button class="pilot-chat-button" id="pilot-chat-button">
+        <i class="fas fa-comment-dots"></i>
+        <span>PILOT CHAT</span>
+    </button>
+    
+    <!-- Status panel at bottom -->
+    <div class="space-status-panel">
+        <div class="status-item">
+            <div>Coordinates</div>
+            <div class="status-value coordinates-value">X: 0.0 Z: 0.0</div>
+        </div>
+        <div class="status-item">
+            <div>Velocity</div>
+            <div class="status-value velocity-value">0.0 km/s</div>
+        </div>
+        <div class="status-item">
+            <div>System</div>
+            <div class="status-value">Optimal</div>
+        </div>
+        <div class="status-item">
+            <div>Fuel</div>
+            <div class="status-value">∞</div>
+        </div>
+    </div>
+    
+    <!-- Side indicators on right -->
+    <div class="space-side-panel">
+        <div class="panel-indicator">
+            <div class="indicator-inner pulse"></div>
+        </div>
+        <div class="panel-indicator">
+            <div class="indicator-inner flicker"></div>
+        </div>
+        <div class="panel-indicator">
+            <div class="indicator-inner rotate"></div>
+        </div>
+    </div>
+    
+    <!-- Minimap -->
+    <div class="minimap-container">
+        <div class="minimap">
+            <div class="minimap-label">Navigation Map</div>
+            <div class="minimap-center"></div>
+            <!-- Planet dots will be added dynamically via JavaScript -->
+            <div class="minimap-ship"></div>
+        </div>
+    </div>
+
+    <!-- Pilot Chat Bubble -->
+    <div class="pilot-chat-bubble" id="pilot-chat-bubble">
+        <div class="chat-content">
+            <span class="typewriter" id="typewriter"></span>
+        </div>
+    </div>
+
+    <canvas class="webgl"></canvas>
+
+    <script src="https://kit.fontawesome.com/9e06b409af.js" crossorigin="anonymous"></script>
+    <script src="./js/header-nav.js"></script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="./js/pilot-chat.js"></script>
+    <script src="./js/typing-animation.js"></script>
+    <script src="./js/main.js"></script>
+</body>
+</html>

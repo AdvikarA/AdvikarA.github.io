@@ -2396,7 +2396,7 @@ async function showPlanetInfoPopup(planetName) {
                 <div class="popup-content">
                     <div class="profile-section">
                         <div class="profile-image">
-                            <img src="img/headshot.jpeg" alt="Profile Picture" class="profile-img">
+                            <img src="../img/headshot.jpeg" alt="Profile Picture" class="profile-img">
                         </div>
                         <div class="profile-info">
                             <h2>About Me</h2>
@@ -2428,20 +2428,20 @@ async function showPlanetInfoPopup(planetName) {
                             <div class="responsive-container-block bg">
                                 <!-- First Column -->
                                 <div class="responsive-container-block img-cont">
-                                    <div class="gallery-image lazy-bg" data-src="img/about/IMG_0542.jpeg">
+                                    <div class="gallery-image lazy-bg" data-src="../img/about/IMG_0542.jpeg">
                                         <div class="caption">
                                             <p>NH hike 2024</p>
                                         </div>
                                     </div>
-                                    <div class="gallery-image lazy-bg" data-src="img/about/IMG_0736.jpeg">
+                                    <div class="gallery-image lazy-bg" data-src="../img/about/IMG_0736.jpeg">
                                         <div class="caption">
                                             <p>Puerto Rico trip</p>
                                         </div>
                                     </div>
-                                    <div class="gallery-image lazy-bg" data-src="img/about/IMG_1369.jpeg">
+                                    <div class="gallery-image lazy-bg" data-src="../img/about/IMG_1369.jpeg">
                                 
                                     </div>
-                                    <div class="gallery-image lazy-bg" data-src="img/about/IMG_1906.jpeg">
+                                    <div class="gallery-image lazy-bg" data-src="../img/about/IMG_1906.jpeg">
                                         <div class="caption">
                                             <p>Senior Year HS</p>
                                         </div>
@@ -2450,12 +2450,12 @@ async function showPlanetInfoPopup(planetName) {
                                 
                                 <!-- Second Column -->
                                 <div class="responsive-container-block img-cont">
-                                    <div class="gallery-image img-big lazy-bg" data-src="img/about/IMG_1954.jpeg">
+                                    <div class="gallery-image img-big lazy-bg" data-src="../img/about/IMG_1954.jpeg">
                                         <div class="caption">
                                             <p>Proof I work</p>
                                         </div>
                                     </div>
-                                    <div class="gallery-image img-big lazy-bg" data-src="img/about/IMG_2396.jpeg">
+                                    <div class="gallery-image img-big lazy-bg" data-src="../img/about/IMG_2396.jpeg">
                                         <div class="caption">
                                             <p>Election day 2024</p>
                                         </div>
@@ -2464,34 +2464,34 @@ async function showPlanetInfoPopup(planetName) {
                                 
                                 <!-- Third Column -->
                                 <div class="responsive-container-block img-cont">
-                                    <div class="gallery-image lazy-bg" data-src="img/about/IMG_2419.jpeg">
+                                    <div class="gallery-image lazy-bg" data-src="../img/about/IMG_2419.jpeg">
                                         <div class="caption">
                                             <p>US Earth Science Camp 2023</p>
                                         </div>
                                     </div>
-                                    <div class="gallery-image lazy-bg" data-src="img/about/IMG_2582.jpeg">
+                                    <div class="gallery-image lazy-bg" data-src="../img/about/IMG_2582.jpeg">
                                         <div class="caption">
                                             <p>National High School Game Academy 2023</p>
                                         </div>
                                     </div>
-                                    <div class="gallery-image lazy-bg" data-src="img/about/IMG_3835.jpeg">
+                                    <div class="gallery-image lazy-bg" data-src="../img/about/IMG_3835.jpeg">
                                         <div class="caption">
                                             <p>SciOly</p>
                                         </div>
                                     </div>
-                                    <div class="gallery-image lazy-bg" data-src="img/about/IMG_4180.jpeg">
+                                    <div class="gallery-image lazy-bg" data-src="../img/about/IMG_4180.jpeg">
                                         
                                     </div>
                                 </div>
                                 
                                 <!-- Fourth Column -->
                                 <div class="responsive-container-block img-cont">
-                                    <div class="gallery-image img-big lazy-bg" data-src="img/about/447785391_914211827404490_844395448136633570_n.jpeg">
+                                    <div class="gallery-image img-big lazy-bg" data-src="../img/about/447785391_914211827404490_844395448136633570_n.jpeg">
                                         <div class="caption">
                                             <p>HS Graduation</p>
                                         </div>
                                     </div>
-                                    <div class="gallery-image img-big" style="background-image: url('img/about/448030336_914663567359316_4875574797276855298_n.jpeg');">
+                                    <div class="gallery-image img-big" style="background-image: url('../img/about/448030336_914663567359316_4875574797276855298_n.jpeg');">
                                         
                                     </div>
                                 </div>
@@ -3298,7 +3298,7 @@ async function showPlanetInfoPopup(planetName) {
                       <div class="projects-container">
                         <div class="project-container project-card">
                           <img
-                            src="/img/llmresearchlogo.png"
+                            src="../img/llmresearchlogo.png"
                             alt="New AI Project"
                             loading="lazy"
                             class="project-pic"
@@ -3312,7 +3312,7 @@ async function showPlanetInfoPopup(planetName) {
                         
                         <div class="project-container project-card">
                           <img
-                            src="/img/ampleharvest.jpg"
+                            src="../img/ampleharvest.jpg"
                             alt="AmpleHarvest Webscraper"
                             loading="lazy"
                             class="project-pic"
@@ -3328,7 +3328,7 @@ async function showPlanetInfoPopup(planetName) {
                         
                         <div class="project-container project-card">
                           <img
-                            src="/img/FaciesLogo.jpg"
+                            src="../img/FaciesLogo.jpg"
                             alt="Geographic Facies Predictor"
                             loading="lazy"
                             class="project-pic"
@@ -3342,7 +3342,7 @@ async function showPlanetInfoPopup(planetName) {
                         
                         <div class="project-container project-card">
                           <img
-                            src="/img/BoulderLights.png"
+                            src="../img/BoulderLights.png"
                             alt="Planetary Boulder Detection"
                             loading="lazy"
                             class="project-pic"
@@ -3362,7 +3362,7 @@ async function showPlanetInfoPopup(planetName) {
                       <div class="projects-container" style="row-gap: 30px;">
                         <div class="project-container project-card">
                           <img
-                            src="/img/hopeboundlogo.jpg"
+                            src="../img/hopeboundlogo.jpg"
                             alt="Project 3"
                             loading="lazy"
                             class="project-pic"
@@ -3376,7 +3376,7 @@ async function showPlanetInfoPopup(planetName) {
                         
                         <div class="project-container project-card">
                           <img
-                            src="/img/newsailogo.png"
+                            src="../img/newsailogo.png"
                             alt="NewsAI logo"
                             loading="lazy"
                             class="project-pic"
@@ -3391,7 +3391,7 @@ async function showPlanetInfoPopup(planetName) {
                         <div class="project-container project-card">
                           <div style="overflow: hidden;">
                             <img
-                              src="/img/HPT.png"
+                              src="../img/HPT.png"
                               alt="HPT"
                               loading="lazy"
                               class="project-pic"
@@ -3407,7 +3407,7 @@ async function showPlanetInfoPopup(planetName) {
                         
                         <div class="project-container project-card">
                           <img
-                            src="/img/QAOA.jpg"
+                            src="../img/QAOA.jpg"
                             alt="Quantum Optimization Algorithm"
                             loading="lazy"
                             class="project-pic"
@@ -3427,7 +3427,7 @@ async function showPlanetInfoPopup(planetName) {
                       <div class="projects-container" style="row-gap: 30px;">
                         <div class="project-container project-card">
                           <img
-                            src="/img/MomentumLogo.jpg"
+                            src="../img/MomentumLogo.jpg"
                             alt="Momentum"
                             loading="lazy"
                             class="project-pic"
@@ -3441,7 +3441,7 @@ async function showPlanetInfoPopup(planetName) {
                         
                         <div class="project-container project-card">
                           <img
-                            src="/img/BurgerBrawlLogo.jpg"
+                            src="../img/BurgerBrawlLogo.jpg"
                             alt="Burger Brawl"
                             loading="lazy"
                             class="project-pic"
@@ -3455,7 +3455,7 @@ async function showPlanetInfoPopup(planetName) {
                         
                         <div class="project-container project-card">
                           <img
-                            src="/img/GalaxSeaLogo.jpg"
+                            src="../img/GalaxSeaLogo.jpg"
                             alt="Galaxsea"
                             loading="lazy"
                             class="project-pic"
@@ -3469,7 +3469,7 @@ async function showPlanetInfoPopup(planetName) {
                         
                         <div class="project-container project-card">
                           <img
-                            src="/img/SkyfarerLogo.jpg"
+                            src="../img/SkyfarerLogo.jpg"
                             alt="Skyfarer"
                             loading="lazy"
                             class="project-pic"
@@ -3843,7 +3843,7 @@ async function showPlanetInfoPopup(planetName) {
 async function showProjectDetails(projectName) {
     let projectSpecificHtml = '';
     // Construct the path to the project's HTML file
-    const filePath = `./templates/project-details/${projectName}.html`;
+    const filePath = `/templates/project-details/${projectName}.html`;
 
     try {
         const response = await fetch(filePath);
