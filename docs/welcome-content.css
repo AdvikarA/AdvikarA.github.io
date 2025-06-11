@@ -1,0 +1,73 @@
+/* Welcome Content Styles for Home Panel */
+
+.home-panel .welcome-content {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  opacity: 1;
+}
+
+.home-panel .welcome-content h1 {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 3.5rem;
+  color: #fff;
+  margin-bottom: 1.5rem;
+  text-shadow: 0 0 20px rgba(93, 156, 236, 0.8);
+  display: block;
+}
+
+.home-panel .welcome-content p {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+  color: #e0e0ff;
+}
+
+.start-button {
+  background-color: rgba(93, 156, 236, 0.3);
+  color: #fff;
+  border: 2px solid rgba(93, 156, 236, 0.6);
+  border-radius: 30px;
+  padding: 12px 30px;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 1.5rem;
+  box-shadow: 0 0 15px rgba(93, 156, 236, 0.3);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.start-button:hover {
+  background-color: rgba(93, 156, 236, 0.5);
+  box-shadow: 0 0 25px rgba(93, 156, 236, 0.5);
+  transform: translateY(-3px);
+}
+
+.start-button:active {
+  transform: translateY(1px);
+}
+
+/* Home content transition styles */
+#home-content {
+  transition: opacity 0.5s ease;
+  opacity: 1;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .home-panel .welcome-content h1 {
+    font-size: 2.5rem;
+  }
+  
+  .home-panel .welcome-content p {
+    font-size: 1rem;
+  }
+  
+  .start-button {
+    font-size: 1rem;
+    padding: 10px 25px;
+  }
+}

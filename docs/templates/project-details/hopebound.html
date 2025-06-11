@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hopebound Data Visualization Platform</title>
+    
+    <style>
+        /* Additional styles for the image gallery */
+        .image-gallery {
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+            margin: 30px 0;
+        }
+        
+        .gallery-item {
+            flex: 1;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+            background: #222;
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .gallery-caption {
+            background: linear-gradient(transparent, rgba(0,0,0,0.7));
+            color: white;
+            padding: 10px;
+            text-align: center;
+            font-weight: 500;
+        }
+        
+        @media (max-width: 768px) {
+            .image-gallery {
+                flex-direction: column;
+            }
+        }
+    </style>
+    
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #1a1a1a;
+            color: #e0e0e0;
+        }
+        
+        .container {
+            background: #2a2a2a;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+        
+        h2 {
+            color: #3498db;
+            font-size: 2.2em;
+            margin-bottom: 20px;
+            text-align: center;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 10px;
+        }
+        
+        h3 {
+            color: #e0e0e0;
+            font-size: 1.5em;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+        
+        p {
+            color: #c0c0c0;
+            margin-bottom: 15px;
+        }
+        
+        ul {
+            color: #c0c0c0;
+            margin-bottom: 20px;
+        }
+        
+        li {
+            margin-bottom: 8px;
+        }
+        
+        .slideshow-container {
+            max-width: 900px;
+            margin: 30px auto;
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        
+        .slide {
+            display: none;
+            position: relative;
+        }
+        
+        .slide.active {
+            display: block;
+        }
+        
+        .slide img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .slide-caption {
+            color: #f2f2f2;
+            font-size: 16px;
+            font-weight: 500;
+            padding: 12px 16px;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            text-align: center;
+            background: linear-gradient(transparent, rgba(0,0,0,0.7));
+        }
+        
+        .nav-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0,0,0,0.6);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            font-size: 20px;
+            cursor: pointer;
+            z-index: 10;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-btn:hover {
+            background: rgba(0,0,0,0.8);
+            transform: translateY(-50%) scale(1.1);
+        }
+        
+        .prev {
+            left: 15px;
+        }
+        
+        .next {
+            right: 15px;
+        }
+        
+        .dots-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+        
+        .dot {
+            cursor: pointer;
+            height: 15px;
+            width: 15px;
+            margin: 0 8px;
+            background-color: #bbb;
+            border-radius: 50%;
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+        
+        .dot:hover {
+            background-color: #999;
+            transform: scale(1.2);
+        }
+        
+        .dot.active {
+            background-color: #3498db;
+        }
+        
+        .architecture-img {
+            margin: 25px 0;
+            text-align: center;
+        }
+        
+        .architecture-img img {
+            max-width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+        }
+        
+        .github-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #24292e, #2f363d);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            margin: 30px auto;
+            box-shadow: 0 4px 15px rgba(36, 41, 46, 0.3);
+            border: none;
+        }
+        
+        .github-btn:hover {
+            background: linear-gradient(135deg, #2f363d, #24292e);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(36, 41, 46, 0.4);
+        }
+        
+        .role-highlight {
+            background-color: #1e3a50;
+            border-left: 4px solid #3498db;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 5px 5px 0;
+            font-size: 16px;
+            color: #e0e0e0;
+        }
+        
+        .skills-section {
+            background-color: #1e3a50;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 30px;
+            border-left: 4px solid #3498db;
+            color: #e0e0e0;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+            
+            h2 {
+                font-size: 1.8em;
+            }
+            
+            .nav-btn {
+                width: 40px;
+                height: 40px;
+                font-size: 16px;
+            }
+            
+            .prev {
+                left: 10px;
+            }
+            
+            .next {
+                right: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Hopebound Data Visualization Platform</h2>
+        <p>As part of Harvard's Tech for Social Good initiative, I led a team developing an interactive data visualization platform for Hopebound, a non-profit organization addressing the youth mental health crisis.</p>
+
+        <div class="role-highlight">
+            <strong>Role:</strong> Project Manager, leading a team of 6 software engineers
+        </div>
+
+        <!-- Image Gallery -->
+        <div class="image-gallery">
+            <div class="gallery-item">
+                <img src="../../img/hopebound1.png" alt="Hopebound Dashboard">
+                <div class="gallery-caption">Data Visualization Dashboard</div>
+            </div>
+            
+            <div class="gallery-item">
+                <img src="../../img/hopebound2.png" alt="Hopebound Impact Metrics">
+                <div class="gallery-caption">Impact Metrics Visualization</div>
+            </div>
+            
+            <div class="gallery-item">
+                <img src="../../img/hopebound3.png" alt="Hopebound Admin Panel">
+                <div class="gallery-caption">Admin Management Interface</div>
+            </div>
+        </div>
+
+        <h3>Project Overview</h3>
+        <p>The youth mental health crisis represents one of the most pressing challenges facing our society today. Hopebound provides free mental health therapy to underserved youth, and needed a way to effectively communicate both the scope of this crisis and their organization's impact to stakeholders, donors, and the public.</p>
+
+        <h3>Key Objectives</h3>
+        <ul>
+            <li><strong>Data Visualization:</strong> Transform complex mental health statistics and impact metrics into accessible, compelling visual narratives</li>
+            <li><strong>Administrative Platform:</strong> Create a secure authentication system for administrators to easily update and manage data</li>
+            <li><strong>Narrative Storytelling:</strong> Develop an interactive journey showing Hopebound's role in clients' and providers' mental health experiences</li>
+            <li><strong>Scalable Architecture:</strong> Build a foundation that could grow with the organization's expanding reach and data collection</li>
+        </ul>
+
+        <h3>Technical Implementation</h3>
+        <p>The platform was built using React and Supabase.</p>
+
+        <div class="architecture-img">
+            <img src="../../img/hopeboundarchitechture.png" alt="Hopebound System Architecture">
+        </div>
+
+        <p><strong>Impact:</strong> The completed platform has significantly enhanced Hopebound's ability to communicate their mission and impact to donors, resulting in increased funding opportunities. The visualization tools have also provided valuable insights for the organization's strategic planning and resource allocation.</p>
+
+        <div class="skills-section">
+            <p><strong>Skills:</strong> Project Management, Data Visualization, UX/UI Design, Team Leadership, Stakeholder Communication</p>
+        </div>
+
+        
+    </div>
+
+
+</body>
+</html>
