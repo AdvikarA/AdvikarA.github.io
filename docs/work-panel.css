@@ -2,51 +2,53 @@
 
 .work-panel h1 {
     font-family: 'Orbitron', sans-serif;
-    font-size: 2.8rem;
-    margin-bottom: 0.5rem;
+    font-size: 1.4rem; /* Reduced by 50% */
+    margin-bottom: 0.25rem; /* Reduced by 50% */
     color: #fff;
     font-weight: 700;
-    letter-spacing: -0.5px;
+    letter-spacing: -0.25px; /* Reduced by 50% */
 }
 
 .work-panel h2 {
     font-family: 'Orbitron', sans-serif;
-    font-size: 1.8rem;
-    margin-bottom: 2rem;
+    font-size: 0.9rem; /* Reduced by 50% */
+    margin-bottom: 1rem; /* Reduced by 50% */
     color: #aaa;
     font-weight: 500;
 }
 
 .work-section {
-    margin-bottom: 2.5rem;
+    margin-bottom: 1.25rem; /* Reduced by 50% */
 }
 
 .work-section h3 {
     font-family: 'Orbitron', sans-serif;
-    font-size: 1.5rem;
-    margin-bottom: 1.5rem;
+    font-size: 0.75rem; /* Reduced by 50% */
+    margin-bottom: 0.75rem; /* Reduced by 50% */
     color: #5d9cec;
-    border-bottom: 1px solid rgba(93, 156, 236, 0.3);
-    padding-bottom: 0.5rem;
+    border-bottom: 0.5px solid rgba(93, 156, 236, 0.3); /* Reduced by 50% */
+    padding-bottom: 0.25rem; /* Reduced by 50% */
 }
 
 .activity-items {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); /* Reduced by 50% */
+    gap: 0.75rem; /* Reduced by 50% */
 }
 
 .activity-item {
     background-color: rgba(10, 20, 40, 0.5);
-    border: 1px solid rgba(93, 156, 236, 0.2);
-    border-radius: 8px;
-    padding: 1.5rem;
+    border: 0.5px solid rgba(93, 156, 236, 0.2); /* Reduced by 50% */
+    border-radius: 4px; /* Reduced by 50% */
+    padding: 0.75rem; /* Reduced by 50% */
     transition: all 0.3s ease;
+    transform: scale(0.5); /* Scale down by 50% */
+    transform-origin: top left; /* Keep it aligned to the top left */
 }
 
 .activity-item:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 5px 15px rgba(93, 156, 236, 0.2);
+    transform: translateY(-2.5px) scale(0.5); /* Reduced by 50% while maintaining scale */
+    box-shadow: 0 2.5px 7.5px rgba(93, 156, 236, 0.2); /* Reduced by 50% */
     border-color: rgba(93, 156, 236, 0.4);
 }
 

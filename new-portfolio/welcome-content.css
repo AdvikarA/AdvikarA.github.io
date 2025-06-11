@@ -1,53 +1,55 @@
 /* Welcome Content Styles for Home Panel */
 
 .home-panel .welcome-content {
-  max-width: 800px;
+  max-width: 400px; /* Reduced by 50% */
   margin: 0 auto;
   text-align: center;
   transition: opacity 0.5s ease, transform 0.5s ease;
   opacity: 1;
+  transform: scale(0.5); /* Scale down by 50% */
+  transform-origin: center; /* Keep it centered */
 }
 
 .home-panel .welcome-content h1 {
   font-family: 'Orbitron', sans-serif;
-  font-size: 3.5rem;
+  font-size: 1.75rem; /* Reduced by 50% */
   color: #fff;
-  margin-bottom: 1.5rem;
-  text-shadow: 0 0 20px rgba(93, 156, 236, 0.8);
+  margin-bottom: 0.75rem; /* Reduced by 50% */
+  text-shadow: 0 0 10px rgba(93, 156, 236, 0.8); /* Reduced by 50% */
   display: block;
 }
 
 .home-panel .welcome-content p {
-  font-size: 1.2rem;
+  font-size: 0.6rem; /* Reduced by 50% */
   line-height: 1.6;
-  margin-bottom: 1.5rem;
+  margin-bottom: 0.75rem; /* Reduced by 50% */
   color: #e0e0ff;
 }
 
 .start-button {
   background-color: rgba(93, 156, 236, 0.3);
   color: #fff;
-  border: 2px solid rgba(93, 156, 236, 0.6);
-  border-radius: 30px;
-  padding: 12px 30px;
+  border: 1px solid rgba(93, 156, 236, 0.6); /* Reduced by 50% */
+  border-radius: 15px; /* Reduced by 50% */
+  padding: 6px 15px; /* Reduced by 50% */
   font-family: 'Orbitron', sans-serif;
-  font-size: 1.2rem;
+  font-size: 0.6rem; /* Reduced by 50% */
   cursor: pointer;
   transition: all 0.3s ease;
-  margin-top: 1.5rem;
-  box-shadow: 0 0 15px rgba(93, 156, 236, 0.3);
+  margin-top: 0.75rem; /* Reduced by 50% */
+  box-shadow: 0 0 7.5px rgba(93, 156, 236, 0.3); /* Reduced by 50% */
   text-transform: uppercase;
-  letter-spacing: 2px;
+  letter-spacing: 1px; /* Reduced by 50% */
 }
 
 .start-button:hover {
   background-color: rgba(93, 156, 236, 0.5);
-  box-shadow: 0 0 25px rgba(93, 156, 236, 0.5);
-  transform: translateY(-3px);
+  box-shadow: 0 0 12.5px rgba(93, 156, 236, 0.5); /* Reduced by 50% */
+  transform: translateY(-1.5px); /* Reduced by 50% */
 }
 
 .start-button:active {
-  transform: translateY(1px);
+  transform: translateY(0.5px); /* Reduced by 50% */
 }
 
 /* Home content transition styles */

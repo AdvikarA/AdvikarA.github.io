@@ -1,20 +1,22 @@
 /* Controls Instructions Panel Styling */
 .controls-instructions {
-    margin-top: 20px; /* Add spacing between navigation console and flight controls */
-    border-top: 1px solid rgba(93, 156, 236, 0.4); /* Add a subtle divider */
-    padding-top: 20px;
+    margin-top: 10px; /* Reduced by 50% */
+    border-top: 0.5px solid rgba(93, 156, 236, 0.4); /* Reduced by 50% */
+    padding-top: 10px; /* Reduced by 50% */
     color: #e0e0ff;
     width: 100%; /* Take full width of parent */
+    transform: scale(0.5); /* Scale down by 50% */
+    transform-origin: top left; /* Keep it aligned to the top left */
 }
 
 .controls-instructions h3 {
     margin-top: 0;
-    margin-bottom: 10px;
+    margin-bottom: 5px; /* Reduced by 50% */
     color: #5d9cec;
-    font-size: 18px;
+    font-size: 9px; /* Reduced by 50% */
     text-align: center;
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 0.5px; /* Reduced by 50% */
 }
 
 .controls-instructions ul {
@@ -24,8 +26,8 @@
 }
 
 .controls-instructions li {
-    margin-bottom: 8px;
-    font-size: 14px;
+    margin-bottom: 4px; /* Reduced by 50% */
+    font-size: 7px; /* Reduced by 50% */
     display: flex;
     align-items: center;
 }
@@ -33,12 +35,12 @@
 .controls-instructions .key {
     display: inline-block;
     background-color: rgba(93, 156, 236, 0.3);
-    border: 1px solid #5d9cec;
-    border-radius: 4px;
-    padding: 2px 6px;
-    margin-right: 8px;
+    border: 0.5px solid #5d9cec; /* Reduced by 50% */
+    border-radius: 2px; /* Reduced by 50% */
+    padding: 1px 3px; /* Reduced by 50% */
+    margin-right: 4px; /* Reduced by 50% */
     font-weight: bold;
-    min-width: 60px;
+    min-width: 30px; /* Reduced by 50% */
     text-align: center;
 }
 
