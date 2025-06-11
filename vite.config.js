@@ -7,5 +7,5 @@ export default {
   server: {
     open: true
   },
-  publicDir: 'assets'
+  publicDir: '../public'
 }

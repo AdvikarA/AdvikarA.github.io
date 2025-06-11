@@ -3843,7 +3843,7 @@ async function showPlanetInfoPopup(planetName) {
 async function showProjectDetails(projectName) {
     let projectSpecificHtml = '';
     // Construct the path to the project's HTML file
-    const filePath = `/templates/project-details/${projectName}.html`;
+    const filePath = `./templates/project-details/${projectName}.html`;
 
     try {
         const response = await fetch(filePath);
