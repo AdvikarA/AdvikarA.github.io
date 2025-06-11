@@ -2,7 +2,7 @@
 
 /* Update the UI container to give more space to the navigation */
 .ui-container {
-    grid-template-columns: 400px 1fr 250px !important;
+    grid-template-columns: 340px 1fr 250px !important;
     display: grid !important;
     pointer-events: none !important;
 }
@@ -10,11 +10,11 @@
 /* Enhanced Navigation Controls */
 .navigation-controls {
     background-color: rgba(0, 10, 30, 0.85) !important;
-    backdrop-filter: blur(15px) !important;
-    border-radius: 15px !important;
-    padding: 15px !important;
+    backdrop-filter: blur(13px) !important;
+    border-radius: 13px !important;
+    padding: 13px !important;
     border: 2px solid rgba(93, 156, 236, 0.4) !important;
-    box-shadow: 0 0 30px rgba(93, 156, 236, 0.3), inset 0 0 20px rgba(93, 156, 236, 0.1) !important;
+    box-shadow: 0 0 25px rgba(93, 156, 236, 0.3), inset 0 0 17px rgba(93, 156, 236, 0.1) !important;
     position: relative;
     overflow: hidden;
     max-height: fit-content !important;
