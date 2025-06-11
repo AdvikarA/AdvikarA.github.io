@@ -1,6 +1,7 @@
 // Header Navigation Functionality
 
-document.addEventListener('DOMContentLoaded', function() {
+// Wait for both DOM and simple-space.js to be fully loaded
+window.addEventListener('load', function() {
     // Get navigation elements
     const navToggle = document.querySelector('.nav-toggle');
     const navLinks = document.querySelector('.nav-links');
