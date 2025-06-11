@@ -1,8 +1,8 @@
 export default {
   root: 'new-portfolio',
-  base: '/',  // Updated for GitHub Pages at root domain
+  base: '/new-portfolio/',  // This is crucial for GitHub Pages deployment
   build: {
-    outDir: '../docs',
+    outDir: '../docs/new-portfolio',
     emptyOutDir: true,
   },
   server: {
