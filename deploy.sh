@@ -9,11 +9,17 @@ mkdir -p docs
 # Create docs/new-portfolio/js directory if it doesn't exist
 mkdir -p docs/new-portfolio/js
 
+# Create docs/new-portfolio/simplified directory if it doesn't exist
+mkdir -p docs/new-portfolio/simplified
+
 # Copy all files from new-portfolio to docs
 cp -R new-portfolio/* docs/
 
 # Explicitly copy all JavaScript files to ensure they're in the right place
 cp -R new-portfolio/js/* docs/new-portfolio/js/
+
+# Explicitly copy the simplified directory to ensure it's in the right place
+cp -R new-portfolio/simplified/* docs/new-portfolio/simplified/
 
 # Copy the built files from dist to docs
 cp -R dist/* docs/
