@@ -534,6 +534,6 @@ setTimeout(() => {
 const simplifiedButton = document.getElementById('simplified-website');
 if (simplifiedButton) {
     simplifiedButton.addEventListener('click', () => {
-        window.location.href = './simplified/index.html';
+        window.location.href = '../simplified-portfolio/index.html';
     });
 }

@@ -35,11 +35,11 @@ function initTypingAnimation() {
     // Typing animation for cycling text
     const typedTextElement = document.getElementById('typed-text');
     const textOptions = [
-        " a developer",
-        " your favorite coder's favorite coder",
-        " confused",
-        " a wannabe start up founder",
-        " unemployed"
+        "a developer",
+        "your favorite coder's favorite coder",
+        "confused",
+        "a wannabe start up founder",
+        "unemployed"
     ];
     
     let currentTextIndex = 0;
