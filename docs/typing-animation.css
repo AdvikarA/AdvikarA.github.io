@@ -124,7 +124,7 @@
 }
 
 #home-content p {
-  margin-bottom: 20px;
+  margin-bottom: 0px;
   font-size: 0.8rem;
   line-height: 1.6;
   max-width: 800px;
@@ -136,7 +136,7 @@
   display: flex;
   justify-content: center;
   gap: 25px;
-  margin: 0px 0;
+  margin: 10px 0;
 }
 
 #home-content .social-links a {
