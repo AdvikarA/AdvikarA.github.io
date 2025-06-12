@@ -125,7 +125,7 @@
 
 #home-content p {
   margin-bottom: 20px;
-  font-size: 1.1rem;
+  font-size: 0.8rem;
   line-height: 1.6;
   max-width: 800px;
   margin-left: auto;
@@ -136,7 +136,7 @@
   display: flex;
   justify-content: center;
   gap: 25px;
-  margin: 25px 0;
+  margin: 0px 0;
 }
 
 #home-content .social-links a {
@@ -162,11 +162,11 @@
 }
 
 #home-content .highlighted-work {
-  margin-top: 30px;
+  margin-top: 0px;
 }
 
 #home-content .highlighted-work h3 {
-  margin-bottom: 20px;
+  margin-bottom: 0px;
   color: #5d9cec;
   font-size: 1.5rem;
 }
@@ -199,7 +199,7 @@
 }
 
 #home-content .work-item p {
-  font-size: 0.9rem;
+  font-size: 0.7rem;
   margin-bottom: 0;
 }
 

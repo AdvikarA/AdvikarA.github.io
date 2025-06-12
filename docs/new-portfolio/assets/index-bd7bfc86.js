@@ -53,7 +53,7 @@ import*as e from"https://cdn.skypack.dev/three@0.132.2";import{OrbitControls as 
                         </div>
                     </div>
                     
-                    <div class="home-content" id="home-content" style="margin-top: 40px; opacity: 0;">
+                    <div class="home-content" id="home-content" style="margin-top: -10px; opacity: 0;">
                         <div class="intro-card">
                             <p class="dynamic-intro">I'm currently studying at Harvard, with interests in Software and AI/Machine Learning. I'm not sure what I want to do in the future, but I'd like to work on something impact focused with an emphasis on applied AI/ML. In my free time, I enjoy exploring new places, playing basketball, and looking at rocks. I have some big plans coming soon. </p>
                         </div>
