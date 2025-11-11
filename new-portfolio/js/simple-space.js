@@ -2031,7 +2031,7 @@ const exitButton = document.createElement('div');
 exitButton.className = 'exit-button';
 exitButton.innerHTML = 'CLOSE & EXIT PLANET';
 exitButton.style.position = 'fixed';
-exitButton.style.bottom = '30px';
+exitButton.style.bottom = '20px';
 exitButton.style.left = '50%';
 exitButton.style.transform = 'translateX(-50%)';
 exitButton.style.backgroundColor = 'rgba(93, 156, 236, 0.3)';
@@ -2045,7 +2045,6 @@ exitButton.style.boxShadow = '0 0 15px rgba(93, 156, 236, 0.3)';
 exitButton.style.cursor = 'pointer';
 exitButton.style.display = 'none';
 exitButton.style.zIndex = '1001';
-exitButton.style.marginTop = '30px';
 exitButton.style.transition = 'all 0.3s ease';
 document.body.appendChild(exitButton);
 
@@ -2262,7 +2261,7 @@ async function showPlanetInfoPopup(planetName) {
                                 </div>
                             </div>
                             
-                            <div class="projects-button-container" style="margin-top: 25px; text-align: center;">
+                            <div class="projects-button-container" style="margin-top: 25px; margin-bottom: 100px; text-align: center;">
                                 <button id="view-projects-button" class="view-projects-button pulse-animation">View All Projects</button>
                             </div>
                         </div>
@@ -5158,7 +5157,7 @@ const spaceControls = document.getElementById('space-controls');
 
 // We'll initialize the animation loop only after the welcome popup is closed
 let animationLoopStarted = false;
-let selectedSite = 'space'; // Default to space site
+let selectedSite = 'simple'; // Default to simple site
 
 // Function to show welcome popup
 /**
@@ -5167,10 +5166,40 @@ let selectedSite = 'space'; // Default to space site
 function showWelcomePopup() {
     welcomePopup.style.display = 'flex';
     
-    // Set initial active state for space option
-    spaceOption.classList.add('active');
-    simpleOption.classList.remove('active');
-    spaceControls.style.display = 'block';
+    // Set initial active state for simple option (default)
+    siteToggle.checked = true;
+    simpleOption.classList.add('active');
+    spaceOption.classList.remove('active');
+    spaceControls.style.display = 'none';
+    
+    // Apply simple site styles initially
+    const welcomeContent = document.querySelector('.welcome-content');
+    welcomeContent.classList.add('simple-mode');
+    
+    // Change all headings to Times New Roman
+    const headings = welcomeContent.querySelectorAll('h1, h2, h3');
+    headings.forEach(heading => {
+        heading.style.fontFamily = '"Times New Roman", serif';
+        heading.style.fontWeight = 'normal';
+    });
+    
+    // Change all paragraphs to Times New Roman
+    const paragraphs = welcomeContent.querySelectorAll('p');
+    paragraphs.forEach(p => {
+        p.style.fontFamily = '"Times New Roman", serif';
+        p.style.fontStyle = 'italic';
+    });
+    
+    // Change button style to simple site style
+    enterSiteButton.style.background = 'rgba(255, 255, 255, 0.1)';
+    enterSiteButton.style.border = '1px solid rgba(255, 255, 255, 0.3)';
+    enterSiteButton.style.fontFamily = '"Times New Roman", serif';
+    enterSiteButton.style.fontWeight = 'normal';
+    
+    // Change welcome content background to be more subdued
+    welcomeContent.style.backgroundColor = 'rgba(30, 30, 40, 0.85)';
+    welcomeContent.style.boxShadow = '0 0 20px rgba(200, 200, 220, 0.3)';
+    welcomeContent.style.border = '1px solid rgba(200, 200, 220, 0.4)';
     
     // Animate in
     setTimeout(() => {
