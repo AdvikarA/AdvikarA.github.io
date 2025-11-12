@@ -1,0 +1,246 @@
+/* Space-themed decorative elements for the empty areas */
+
+/* Right side radar panel */
+.space-radar {
+    position: fixed;
+    top: 100px; /* Moved down to avoid overlap with header */
+    right: 20px;
+    width: 200px;
+    height: 200px;
+    background-color: rgba(0, 10, 30, 0.7);
+    border: 2px solid rgba(93, 156, 236, 0.6);
+    border-radius: 50%;
+    box-shadow: 0 0 30px rgba(93, 156, 236, 0.3), inset 0 0 20px rgba(93, 156, 236, 0.1);
+    overflow: hidden;
+    z-index: 100;
+    pointer-events: none;
+}
+
+.radar-scanner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, rgba(93, 156, 236, 0) 0%, rgba(93, 156, 236, 0.8) 100%);
+    transform-origin: left center;
+    animation: radar-scan 4s linear infinite;
+}
+
+.radar-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 10px;
+    height: 10px;
+    background-color: rgba(93, 156, 236, 0.8);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 10px rgba(93, 156, 236, 0.8);
+}
+
+.radar-rings {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    height: 80%;
+    border: 1px solid rgba(93, 156, 236, 0.3);
+    border-radius: 50%;
+}
+
+.radar-rings:before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60%;
+    height: 60%;
+    border: 1px solid rgba(93, 156, 236, 0.3);
+    border-radius: 50%;
+}
+
+.radar-rings:after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 30%;
+    height: 30%;
+    border: 1px solid rgba(93, 156, 236, 0.3);
+    border-radius: 50%;
+}
+
+/* Bottom status panel */
+.space-status-panel {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60%;
+    height: 60px;
+    background-color: rgba(0, 10, 30, 0.7);
+    border: 2px solid rgba(93, 156, 236, 0.6);
+    border-radius: 10px;
+    box-shadow: 0 0 30px rgba(93, 156, 236, 0.3), inset 0 0 20px rgba(93, 156, 236, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    z-index: 100;
+    pointer-events: none;
+}
+
+.status-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #5d9cec;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 12px;
+    text-transform: uppercase;
+    width: 25%; /* Fixed width for each status item */
+}
+
+.status-value {
+    font-size: 16px;
+    color: #e0e0ff;
+    margin-top: 5px;
+    min-width: 100px; /* Ensure minimum width */
+    text-align: center; /* Center the text */
+    font-family: 'Space Mono', monospace; /* Monospace font for consistent width */
+}
+
+/* Right side vertical panel */
+.space-side-panel {
+    position: fixed;
+    top: 320px; /* Adjusted to be below the radar */
+    right: 20px;
+    width: 60px;
+    height: calc(100vh - 400px); /* Adjusted height */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    z-index: 100;
+    pointer-events: none;
+}
+
+.panel-indicator {
+    width: 50px;
+    height: 50px;
+    background-color: rgba(0, 10, 30, 0.7);
+    border: 2px solid rgba(93, 156, 236, 0.6);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 15px rgba(93, 156, 236, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.panel-indicator:after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(93, 156, 236, 0.2) 0%, rgba(0, 10, 30, 0) 70%);
+}
+
+.indicator-inner {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: rgba(93, 156, 236, 0.2);
+    position: relative;
+}
+
+.indicator-inner.pulse {
+    animation: pulse 2s infinite;
+}
+
+.indicator-inner.flicker {
+    animation: flicker 3s infinite;
+}
+
+.indicator-inner.rotate {
+    background: conic-gradient(rgba(93, 156, 236, 0.8), rgba(93, 156, 236, 0), rgba(93, 156, 236, 0.8));
+    animation: rotate 4s linear infinite;
+}
+
+/* Animations */
+@keyframes radar-scan {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 5px rgba(93, 156, 236, 0.5);
+    }
+    50% {
+        box-shadow: 0 0 15px rgba(93, 156, 236, 0.8);
+    }
+    100% {
+        box-shadow: 0 0 5px rgba(93, 156, 236, 0.5);
+    }
+}
+
+@keyframes flicker {
+    0%, 100% {
+        opacity: 0.8;
+    }
+    25% {
+        opacity: 0.3;
+    }
+    50% {
+        opacity: 0.9;
+    }
+    75% {
+        opacity: 0.5;
+    }
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .space-radar {
+        width: 120px;
+        height: 120px;
+    }
+    
+    .space-status-panel {
+        width: 90%;
+        height: 50px;
+    }
+    
+    .space-side-panel {
+        width: 40px;
+    }
+    
+    .panel-indicator {
+        width: 35px;
+        height: 35px;
+    }
+    
+    .indicator-inner {
+        width: 20px;
+        height: 20px;
+    }
+}

@@ -1,0 +1,78 @@
+/* Work Panel Styling */
+
+.work-panel h1 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 2.8rem;
+    margin-bottom: 0.5rem;
+    color: #fff;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+}
+
+.work-panel h2 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.8rem;
+    margin-bottom: 2rem;
+    color: #aaa;
+    font-weight: 500;
+}
+
+.work-section {
+    margin-bottom: 2.5rem;
+}
+
+.work-section h3 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    color: #5d9cec;
+    border-bottom: 1px solid rgba(93, 156, 236, 0.3);
+    padding-bottom: 0.5rem;
+}
+
+.activity-items {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+}
+
+.activity-item {
+    background-color: rgba(10, 20, 40, 0.5);
+    border: 1px solid rgba(93, 156, 236, 0.2);
+    border-radius: 8px;
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+}
+
+.activity-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(93, 156, 236, 0.2);
+    border-color: rgba(93, 156, 236, 0.4);
+}
+
+.activity-item h4 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    color: #fff;
+}
+
+.activity-role {
+    font-size: 0.9rem;
+    color: #5d9cec;
+    margin-bottom: 1rem;
+    font-weight: 500;
+}
+
+.activity-item p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: #e0e0ff;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .activity-items {
+        grid-template-columns: 1fr;
+    }
+}
