@@ -538,9 +538,11 @@
                 </div>
                 <div class="project-entry-details">
                   ${entry.paragraphs.slice(2).map(paragraph => `<p class="project-entry-copy">${paragraph}</p>`).join("")}
-                  <ul class="project-entry-list">
-                    ${entry.bullets.map(item => `<li>${item}</li>`).join("")}
-                  </ul>
+                  ${entry.bullets && entry.bullets.length ? `
+                    <ul class="project-entry-list">
+                      ${entry.bullets.map(item => `<li>${item}</li>`).join("")}
+                    </ul>
+                  ` : ""}
                   <p class="project-entry-impact"><strong>Impact:</strong> ${entry.impact}</p>
                   ${!entry.featured && entry.links && entry.links.length ? `
                     <p class="project-entry-link">

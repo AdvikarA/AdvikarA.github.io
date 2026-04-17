@@ -137,6 +137,16 @@ const PROJECT_NEWSAI = projectEntry({
   impact: "The project explored a more reflective news experience centered on comparison, bias awareness, and better information hygiene."
 });
 
+const PROJECT_KALSHI = projectEntry({
+  title: "Kalshi Trading Bot",
+  meta: "2026 · Independent · In Progress",
+  paragraphs: [
+    "Its still in the works. Right now i've lost $7 trying to find alpha. >:/"
+  ],
+  bullets: [],
+  impact: "none lol"
+});
+
 const PROJECT_EARTHQUAKE = projectEntry({
   title: "Gemini-based LLM Earthquake Research",
   meta: "2025 · Google × Harvard Earth Science Department · In Progress",
@@ -242,6 +252,7 @@ window.SITE_CONTENT = {
         years: "2025",
         blurb: "Independent builds outside formal research and nonprofit work. Game development work and the Harvard Purity Test still exist in the archive, but are intentionally omitted from this page.",
         entries: [
+          PROJECT_KALSHI,
           PROJECT_NEWSAI
         ]
       }
