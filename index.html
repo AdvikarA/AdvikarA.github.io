@@ -1,39 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Advikar Ananthkumar | Portfolio</title>
-    <meta http-equiv="refresh" content="0; url=./new-portfolio/index.html">
-    <style>
-        body {
-            font-family: 'Times New Roman', Times, serif;
-            background-color: #000;
-            color: #fff;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            text-align: center;
-        }
-        .redirect-message {
-            max-width: 600px;
-            padding: 20px;
-        }
-        a {
-            color: #5d9cec;
-            text-decoration: none;
-        }
-        a:hover {
-            text-decoration: underline;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title></title>
+  <link rel="stylesheet" href="styles.css?v=tree-left-2" />
 </head>
-<body>
-    <div class="redirect-message">
-        <h1>Redirecting to Advikar Ananthkumar's Portfolio</h1>
-        <p>If you are not automatically redirected, <a href="./new-portfolio/index.html">click here</a>.</p>
-    </div>
+<body data-page="home" class="home-page">
+  <div id="petal-field" class="petal-field" aria-hidden="true"></div>
+  <div class="page">
+    <header class="site-header">
+      <a class="site-name" id="nav-name" href="index.html"></a>
+      <ul class="site-nav" id="nav-links"></ul>
+    </header>
+
+    <main class="home-layout">
+      <section class="home-tree-left-stage" aria-hidden="true">
+        <canvas id="tree-left" class="tree-left-canvas"></canvas>
+      </section>
+
+      <div class="main-column">
+        <section class="intro">
+          <h1 id="home-title"></h1>
+          <div id="home-paragraphs"></div>
+        </section>
+
+        <section class="section home-about">
+          <h2 class="section-label">Priors</h2>
+          <p class="section-copy" id="home-bio"></p>
+          <ul class="meta-list" id="home-links"></ul>
+        </section>
+      </div>
+
+      <section class="home-tree-stage" aria-hidden="true">
+        <div class="home-trees-desktop">
+          <canvas id="tree-foreground" class="tree-canvas tree-foreground"></canvas>
+        </div>
+        <div class="home-tree-mobile">
+          <canvas id="tree-mobile" class="tree-mobile-canvas"></canvas>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p id="footer-copy"></p>
+    </footer>
+  </div>
+
+  <script src="site-data.js"></script>
+  <script src="content.js"></script>
+  <script src="app.js?v=tree-left-2"></script>
 </body>
 </html>
