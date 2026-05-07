@@ -36,7 +36,27 @@ const PROJECT_MOMENTUM_EOSS = projectEntry({
   impact: "The result sharpens the practical picture of momentum, batch size, and learning-rate coupling: momentum can either permit sharper solutions or constrain training toward flatter regions depending on the stochastic regime.",
   links: [
     { href: "momentum-edge-stochastic-stability.html", label: "Read the research note" },
-    { href: "files/2604.14108v1.pdf", label: "PDF" }
+    { href: "momentum-edge-stochastic-stability.pdf", label: "PDF" }
+  ]
+});
+
+const PROJECT_DIAGQUANT = projectEntry({
+  title: "DiagQuant / DiagBoost",
+  meta: "2025 · CS 2420 · LLM Quantization",
+  paragraphs: [
+    "A research project on improving low-bit transformer quantization by extending SpinQuant with a bounded learned diagonal matrix.",
+    "The report proposes DiagBoost, an affine transformation method that combines learned rotations with cheap coordinate-wise scaling, aiming to reduce quantization error while keeping the method practical for deployment."
+  ],
+  bullets: [
+    "Generalized SpinQuant from a pure orthogonal rotation into a bounded affine transform, using a learned diagonal matrix after the rotation",
+    "Developed the theoretical argument that diagonal scaling can strictly reduce quantization error on anisotropic data while matching SpinQuant on isotropic data",
+    "Implemented simulated 4-bit weight and 8-bit activation quantization for GPT-2 Small on WikiText-2, with learned rotation and diagonal modules inserted around attention and MLP layers",
+    "Compared baseline quantization, SpinQuant, joint DiagBoost training, and separate rotation-then-diagonal training regimes",
+    "Found that DiagBoost improved GPT-2 perplexity under aggressive settings and that separate diagonal training achieved competitive perplexity with lower wall-clock training time"
+  ],
+  impact: "The project explored a low-overhead path for making aggressive LLM quantization more accurate by combining rotation-based outlier smoothing with hardware-friendly diagonal scaling.",
+  links: [
+    { href: "files/CS2420_Fall25_Report_11__Advikar_Ananthkumar__Sam_Huang__Nathan_Wei__Josh_Zyzak_pdf.pdf", label: "PDF report" }
   ]
 });
 
@@ -109,7 +129,35 @@ const T4SG_AMPLEHARVEST = projectEntry({
   impact: "The scraper substantially reduced the time and cost of data verification across more than 4,000 food pantries."
 });
 
+const T4SG_GRANSON_AI = projectEntry({
+  title: "Granson AI Desktop Assistant",
+  meta: "2026 · Harvard Tech for Social Good × Computers 4 People",
+  slideRatio: "2.32 / 1",
+  images: [
+    projectImage("images/c4p1.png", "Granson AI home, tutorial, and options overlay screens"),
+    projectImage("images/c4p2.png", "Granson AI interactive tutorial running over a browser")
+  ],
+  paragraphs: [
+    "Granson AI is an AI-powered desktop companion built through Harvard Tech for Social Good for Computers 4 People, focused on real-time digital literacy support.",
+    "The product is an always-available Electron overlay that sits on top of desktop applications and helps underserved users complete digital tasks with contextual instructions, multilingual chat, voice support, and step-by-step tutorials.",
+    "The system combines an Electron shell, a Next.js backend, OpenAI and Anthropic model calls, screenshot analysis, speech-to-text, translation, tutorial data structures, and API-cost-aware design."
+  ],
+  bullets: [
+    "Always-on-top desktop assistant with draggable, resizable overlay behavior and lightweight tutorial/chat surfaces that can run while the user works in other apps",
+    "LLM pipelines for chat, tutorial generation, screenshot interpretation, coordinate extraction, and constrained digital-literacy responses",
+    "Computer Use API-style interaction model using screen capture, vision-based bounding boxes, tool calls for locating interface elements, dynamic failure messages, and adaptive next-step guidance",
+    "OpenAI and Anthropic API integrations across chatbot responses, interactive tutorials, vision analysis, voice transcription, and bilingual English/Spanish support",
+    "Accessibility controls including larger text, opacity settings, language settings, audio input/output, simplified tabs, clearer buttons, and introductory app-tour flows",
+    "Tutorial infrastructure for app tours, Google search, Gmail, Wi-Fi, and interactive user-prompted lessons that can update based on what is visible on screen"
+  ],
+  impact: "The team turned digital literacy help into a contextual desktop workflow: users could ask for help, receive screen-aware instructions, and move through tutorials without leaving the application they were trying to use.",
+  links: [
+    { href: "files/C4P x T4SG FINAL .pdf", label: "Final presentation" }
+  ]
+});
+
 const T4SG_PROJECTS = [
+  T4SG_GRANSON_AI,
   T4SG_INEEDANA,
   T4SG_HOPEBOUND,
   T4SG_AMPLEHARVEST
@@ -148,18 +196,31 @@ const PROJECT_KALSHI = projectEntry({
 });
 
 const PROJECT_EARTHQUAKE = projectEntry({
-  title: "Gemini-based LLM Earthquake Research",
-  meta: "2025 · Google × Harvard Earth Science Department · In Progress",
+  title: "Applications of Large Language Models in Seismology",
+  meta: "2025 · Google × Harvard Earth & Planetary Sciences · Gemini · Seismology",
+  slideRatio: "2.02 / 1",
+  images: [
+    projectImage("images/seismo-catalog-map.png", "Catalog of real earthquake events used in the seismology LLM pipeline"),
+    projectImage("images/seismo-six-panel-waveform.png", "Six-panel raw and bandpass seismogram image passed to Gemini"),
+    projectImage("images/seismo-ai-catalog-site.png", "AI-generated earthquake catalog site")
+  ],
   paragraphs: [
-    "An in-progress research project focused on using Gemini to classify and predict earthquakes from seismic waveform data.",
-    "The work sits at the boundary between Earth science, sequence modeling, and practical analysis workflows for seismic signals."
+    "A completed research project with the Harvard Earth & Planetary Sciences Department studying whether Gemini can interpret three-component seismogram images inside an end-to-end seismology workflow.",
+    "The project moved from controlled waveform datasets to a curated 23-event earthquake catalog, testing classification, phase picking, earthquake location, magnitude estimation, first-motion polarity reading, and focal-mechanism inference."
   ],
   bullets: [
-    "Exploring LLM-assisted approaches for earthquake classification and forecasting tasks",
-    "Working with waveform data and research workflows in collaboration with Earth science partners",
-    "Still early enough that the system design and empirical results are evolving"
+    "Built a catalog pipeline that retrieves FDSN waveforms, renders six-panel raw and bandpass seismogram images, calls Gemini for structured waveform interpretation, and feeds LLM-derived picks into deterministic location and focal-mechanism stages",
+    "Evaluated a five-run progression across prompt rules, model scale, forced magnitude estimation, Geiger inversion, azimuth-balanced station selection, and analyst-centered polarity zooms",
+    "Found that LLM-derived P picks can support earthquake location with 9.6 km median epicentral error, improving to 6.6 km after geometric quality control",
+    "Found that forced magnitude estimation from raw-count waveform images achieved 0.295 mean absolute error and 0.125 median error on the requested USGS magnitude scale",
+    "Showed that first-motion polarity reading remained at chance, even when polarity windows were centered on analyst P picks, suggesting a vision-model capability ceiling"
   ],
-  impact: "Ongoing work. The current emphasis is on framing the problem well and building a research workflow that can support meaningful evaluation."
+  impact: "The work separates where multimodal LLMs are useful in seismology from where physics, station geometry, and signal-processing constraints still dominate.",
+  links: [
+    { href: "gemini-earthquake-research.html", label: "Read the research note" },
+    { href: "files/EPS_210_Paper (2) copy.pdf", label: "PDF" },
+    { href: "https://github.com/AdvikarA/Seismo-LLM", label: "Code" }
+  ]
 });
 
 const PROJECT_QAOA = projectEntry({
@@ -235,6 +296,7 @@ window.SITE_CONTENT = {
         blurb: "Research-oriented work spanning geoscience, quantum computing, planetary vision, and current earthquake modeling efforts.",
         entries: [
           PROJECT_MOMENTUM_EOSS,
+          PROJECT_DIAGQUANT,
           PROJECT_EARTHQUAKE,
           PROJECT_QAOA,
           PROJECT_FACIES,
@@ -250,7 +312,7 @@ window.SITE_CONTENT = {
       {
         title: "Independent",
         years: "2025",
-        blurb: "Independent builds outside formal research and nonprofit work. Game development work and the Harvard Purity Test still exist in the archive, but are intentionally omitted from this page.",
+        blurb: "Additional venture and game development projects have been done but are not listed here.",
         entries: [
           PROJECT_KALSHI,
           PROJECT_NEWSAI

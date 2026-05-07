@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title></title>
+  <link rel="stylesheet" href="styles.css?v=seismo-note-1" />
+</head>
+<body data-page="projects" class="research-post-page">
+  <div class="page">
+    <header class="site-header">
+      <a class="site-name" id="nav-name" href="index.html"></a>
+      <ul class="site-nav" id="nav-links"></ul>
+    </header>
+
+    <main class="research-post-main">
+      <article>
+        <header class="essay-header">
+          <p class="section-label">Research note</p>
+          <h1 class="page-title">Can Gemini Read an Earthquake?</h1>
+          <p class="essay-meta">May 2026 · Google × Harvard Earth & Planetary Sciences · seismology, multimodal LLMs · <a href="files/EPS_210_Paper (2) copy.pdf">PDF</a> · <a href="https://github.com/AdvikarA/Seismo-LLM" target="_blank" rel="noreferrer">Code</a></p>
+        </header>
+
+        <figure class="essay-figure essay-figure-hero">
+          <img src="images/seismo-catalog-map.png" alt="Map of the real earthquake catalog used in the Gemini seismology study" />
+          <figcaption>The real-event catalog: 23 earthquakes across California, Alaska, Washington, Nevada, Texas, Oklahoma, North Carolina, Mexico, and Turkey, spanning small local events through a M7.3 Alaska earthquake.</figcaption>
+        </figure>
+
+        <div class="essay-body">
+          <p>This research project asks a simple question with a lot hiding underneath it: can a multimodal LLM look at seismogram images and do pieces of the work a seismologist normally does?</p>
+
+          <p>The paper studies Gemini on three-component waveform images. The model is asked to classify waveforms, pick P and S arrivals, estimate earthquake magnitude, help locate events, and read first-motion polarity. Those outputs are then placed inside a larger deterministic seismology pipeline, where early model mistakes can propagate into downstream location and focal-mechanism estimates.</p>
+
+          <p>The short version is that Gemini is useful for some parts of the workflow and very bad at others. It can produce phase picks good enough to support earthquake location under reasonable station geometry, and it can estimate magnitude surprisingly well from raw-count waveform images when forced to commit to a number. But first-motion polarity reading stays at chance, even when the input window is centered on the analyst's published P pick.</p>
+
+          <blockquote>
+            <p>The main lesson is not "LLMs can do seismology." It is more specific: multimodal LLMs can be useful scientific workflow components when their outputs are paired with deterministic algorithms and uncertainty checks, but they fail sharply on tasks that require subtle signal-level visual discrimination.</p>
+          </blockquote>
+
+          <h2>Why this is not just image classification</h2>
+
+          <p>A basic benchmark would ask the model to label an image as earthquake or noise. That is useful, but it is not what a seismologist's workflow looks like. In a real analysis pipeline, a waveform interpretation becomes an input to another computation. A P pick affects a location. A polarity affects a focal mechanism. A magnitude estimate affects how the event is triaged and interpreted.</p>
+
+          <p>That is why the project was designed as an end-to-end workflow instead of a single classification task. The LLM is only used at the stages where visual interpretation is needed. Everything else is deterministic Python: waveform retrieval, plotting, location inversion, uncertainty diagnostics, polarity comparison, and summary-table generation.</p>
+
+          <p>This matters because it lets us separate different kinds of failure. If a location is bad, that might be because Gemini picked the phase badly. But it might also be because the station geometry is terrible. If a focal mechanism is wrong, that might be because the HASH inversion is wrong. Or it might be because the polarities going into HASH are basically random. The paper tries to isolate those cases instead of mixing them into one overall score.</p>
+
+          <h2>The data</h2>
+
+          <p>The project starts with controlled waveform datasets and then moves to a real-event earthquake catalog.</p>
+
+          <p>The controlled phase used STEAD, the Stanford Earthquake Dataset, accessed through SeisBench. STEAD is useful because it contains labeled three-component seismograms with metadata such as magnitude, depth, distance, and signal-to-noise ratio. But STEAD also has a limitation: the earthquake traces used here are mostly local and regional events. Early experiments on STEAD alone made the model look better at classification than it really was, because the data did not fully represent teleseismic signals, explosions, landslides, and other non-earthquake sources.</p>
+
+          <p>To broaden the task, the dataset was merged with CREW teleseismic records and Pacific Northwest records containing explosions and landslides. After filtering depth artifacts and samples outside the final bin definitions, the merged dataset contained 118,400 samples. These were stratified by distance, magnitude, depth, and SNR so the model could be tested across physically meaningful regimes rather than one convenient slice of the waveform world.</p>
+
+          <p>The main results come from a curated catalog of 23 real earthquakes. The catalog includes small California events, induced-seismicity events in Texas and Oklahoma, offshore and sparse-network cases, Alaska events including a M7.3 earthquake, Mexico events, and two Turkey events served through AFAD waveform data. The point was not to select only clean examples. The point was to see whether an LLM-based pipeline could survive the messy conditions that appear in actual seismological work.</p>
+
+          <h2>The waveform images</h2>
+
+          <p>Each station-event pair is rendered as an image before being passed to Gemini. The main seismogram-interpretation input has six panels: raw east, north, and vertical components on the top row, and the same three components after a 1.0-2.0 Hz Butterworth bandpass on the bottom row.</p>
+
+          <figure class="essay-figure essay-figure-wide">
+            <img src="images/seismo-six-panel-waveform.png" alt="Six-panel raw and filtered seismogram image used as Gemini input" loading="lazy" />
+            <figcaption>The six-panel waveform image passed to the seismogram-interpretation prompt. The filtered row makes P and S arrivals easier to see while preserving the raw waveform context.</figcaption>
+          </figure>
+
+          <p>This visual representation ended up mattering a lot. Earlier plots used sample index on the x-axis, and the model often failed to translate samples into physical arrival times. The final plots use seconds since trace start, adaptive major ticks, and one-second minor grid lines. The inputs are unmarked: there are no ground-truth P or S arrival markers drawn on the image, because that would leak the answer into the prompt.</p>
+
+          <p>The polarity task uses a different image: a four-second zoom around the P arrival, high-pass filtered at 3 Hz. This is meant to sharpen the first motion, which is the initial upward or downward deflection used in focal-mechanism analysis.</p>
+
+          <figure class="essay-figure essay-figure-wide">
+            <img src="images/seismo-polarity-zoom.png" alt="High-pass filtered four-second waveform zoom used for first-motion polarity reading" loading="lazy" />
+            <figcaption>The polarity-reading input is centered on a P pick and high-pass filtered to expose the first motion. Even with this alignment, Gemini did not read polarity above chance.</figcaption>
+          </figure>
+
+          <h2>The pipeline</h2>
+
+          <p>The real-event catalog pipeline has eight stages. Only two are LLM calls.</p>
+
+          <figure class="essay-figure essay-figure-wide">
+            <img src="images/seismo-ai-catalog-site.png" alt="AI-generated earthquake catalog website from the LLM-driven seismology pipeline" loading="lazy" />
+            <figcaption>A public-facing AI-generated catalog site was built from the same outputs as the paper tables: waveform images, Gemini interpretations, locations, magnitudes, polarities, and focal mechanisms.</figcaption>
+          </figure>
+
+          <p>First, the catalog selects an event and fetches event-level metadata from USGS when available. Second, it retrieves three-component waveforms from regional FDSN data centers such as IRIS/EarthScope, SCEDC, NCEDC, TEXNET, KOERI, and EIDA routing. Third, it generates the waveform images. Fourth, Gemini performs the seismogram-interpretation pass, returning a structured 19-field JSON object. Fifth, Gemini performs a separate polarity-reading pass on the zoomed P window. Sixth, the P picks are inverted for earthquake location with Geiger's method and Levenberg-Marquardt damping. Seventh, the polarities are passed into a pure-Python HASH-style focal-mechanism grid search. Eighth, the outputs are compared against USGS or analyst references.</p>
+
+          <p>The seismogram-interpretation JSON includes waveform classification, distance class, depth class, P arrival time, S arrival time, P-wave and S-wave type, first motion, surface-wave indicators, back-azimuth, incident angle, epicentral distance, depth, magnitude, magnitude type, origin time relative to P, and a short reasoning string.</p>
+
+          <p>The separation between LLM and deterministic stages is important. It means the model is not being asked to magically "solve seismology." It is being asked to produce structured visual interpretations that can be audited, compared, and inserted into conventional physical procedures.</p>
+
+          <h2>Prompt design</h2>
+
+          <p>The prompt changed several times during the project. Three changes mattered most.</p>
+
+          <p>First, an early "anti-spike" rule refused to pick phases before 20 seconds into the trace. That was meant to suppress spurious early picks on noisy images, but it badly hurt legitimate noisy events. It was removed and replaced with softer consistency checks.</p>
+
+          <p>Second, magnitude type had to be controlled. If Gemini predicted moment magnitude while USGS reported local magnitude, the error metric became confused. The final prompt used a per-event magnitude-scale token, so the model was asked to estimate the same scale as the USGS reference, either ML or Mw.</p>
+
+          <p>Third, the larger Gemini model often refused to estimate magnitude from raw-count waveforms because instrument response was missing. Scientifically, that caution is reasonable. But for the experiment, it made magnitude evaluation impossible. The final prompt therefore forced a numerical magnitude estimate even when calibration was incomplete, asking the model to use waveform amplitude, duration, and scale-specific rules of thumb.</p>
+
+          <h2>The five-run experiment</h2>
+
+          <p>The catalog results are organized as a five-run progression. Each run changes one part of the system while keeping the rest fixed.</p>
+
+          <ul>
+            <li><strong>Run 1:</strong> Gemini 2.5 Flash-Lite, minimal prompt, no consistency rules, no forced magnitude, and a Nelder-Mead simplex locator.</li>
+            <li><strong>Run 2:</strong> Same model, but with soft prompt rules enforcing consistency between distance class, numerical distance, and phase behavior.</li>
+            <li><strong>Run 3:</strong> Gemini 3.1 Pro replaces Flash-Lite while magnitude is still allowed to be null.</li>
+            <li><strong>Run 4:</strong> Gemini 3.1 Pro is forced to emit magnitude, and the locator is replaced with a Geiger inversion using Levenberg-Marquardt damping.</li>
+            <li><strong>Run 5:</strong> The final version adds azimuth-balanced station selection, analyst-centered polarity zooms where available, and per-event magnitude-scale substitution.</li>
+          </ul>
+
+          <figure class="essay-figure essay-figure-wide">
+            <img src="images/seismo-location-runs.png" alt="Per-event location error across Gemini seismology pipeline runs" loading="lazy" />
+            <figcaption>Per-event location error across the run progression. The final run wins on median location error, but the mean is affected by a few geometry-limited regressions.</figcaption>
+          </figure>
+
+          <p>Run 5 has the best median result across the main metrics: median location error of 9.6 km, magnitude mean absolute error of 0.295, and magnitude median absolute error of 0.125. But the run progression also shows why a single score is misleading. Some improvements come from model capability. Others come from prompt constraints. The largest location improvements come from deterministic infrastructure and station geometry, not from the LLM alone.</p>
+
+          <h2>Magnitude: the surprising positive result</h2>
+
+          <p>The most surprising positive result is magnitude estimation. In the final run, Gemini estimates earthquake magnitude from raw-count waveform images with mean absolute error of 0.295 magnitude units and median absolute error of 0.125 on the requested USGS magnitude scale. Sixteen of 23 events are within 0.5 magnitude units, 21 of 23 are within 1.0, and 13 are within 0.1.</p>
+
+          <figure class="essay-figure essay-figure-wide">
+            <img src="images/seismo-magnitude.png" alt="Gemini magnitude estimates versus USGS earthquake magnitudes" loading="lazy" />
+            <figcaption>Run 5 magnitude estimates versus USGS truth. The main outlier is a Turkey event served from AFAD waveforms with non-standard station calibration.</figcaption>
+          </figure>
+
+          <p>This is interesting because the model does not have instrument-response-corrected ground motion. It is looking at waveform images in raw counts. The result suggests Gemini can infer useful magnitude proxies from amplitude, duration, coda shape, and other visual cues. This is not a replacement for calibrated seismological magnitude estimation, but it may be useful for first-pass triage.</p>
+
+          <h2>Phase picking: useful above the SNR floor</h2>
+
+          <p>Phase picking is evaluated against analyst P picks from USGS phase data. Across 117 matched station-event pairs in Run 5, the median absolute residual is 0.56 seconds. The Pearson correlation between predicted and analyst arrival time is 0.72. About 46% of picks fall within 0.5 seconds, 67% within 1 second, and 85% within 2 seconds.</p>
+
+          <figure class="essay-figure essay-figure-wide">
+            <img src="images/seismo-pick-scatter.png" alt="Gemini P arrival predictions compared with analyst P arrivals" loading="lazy" />
+            <figcaption>Predicted versus analyst P-arrival time across 117 matched station-event pairs.</figcaption>
+          </figure>
+
+          <p>The mean absolute residual is worse, around 3.0 seconds, because the error distribution is heavy-tailed. A few low-SNR cases dominate the mean. Stratifying by SNR makes the pattern clear: traces above about 20 dB SNR have median pick residual around 0.5 seconds, while the 10-20 dB bin jumps to roughly 18.6 seconds.</p>
+
+          <figure class="essay-figure essay-figure-wide">
+            <img src="images/seismo-pick-snr.png" alt="Gemini P-pick error as a function of signal-to-noise ratio" loading="lazy" />
+            <figcaption>The SNR cliff is one of the cleanest operational findings: above about 20 dB, picks are usable; below it, errors become large.</figcaption>
+          </figure>
+
+          <p>This is exactly the kind of result that matters in deployment. The useful claim is not "Gemini can always pick phases." The useful claim is "Gemini-derived picks can be trusted only above a measurable SNR threshold, and should be rejected below it."</p>
+
+          <h2>Location: the model is not the whole story</h2>
+
+          <p>Earthquake location is computed from Gemini-derived P arrivals using Geiger's method. Depth is fixed to the USGS value, and the inversion solves for latitude, longitude, and origin time under a constant P-wave velocity of 6.0 km/s. The implementation reports uncertainty diagnostics such as azimuthal gap, condition number, RMS residual, and horizontal error ellipse.</p>
+
+          <p>In Run 5, 21 of the 23 events are locatable. The median epicentral error is 9.6 km. Eleven events are below 10 km, and 14 are below 20 km. After a geometric quality-control filter retaining only events with azimuthal gap below 250 degrees and condition number below 10,000, the median drops to 6.6 km on 16 trustworthy events.</p>
+
+          <p>The important point is that the bad cases are not mysterious. The four events above 100 km error all have large azimuthal gaps and ill-conditioned inverse problems. In other words, even good phase picks cannot rescue a location if all the stations are on one side of the earthquake or the network geometry is fundamentally underconstrained.</p>
+
+          <p>That makes location a mixed task. Gemini contributes useful P picks, but location quality is dominated by station geometry and inversion stability. The deterministic uncertainty diagnostics are not just after-the-fact explanations; they can flag untrustworthy locations before comparing to ground truth.</p>
+
+          <h2>Polarity: the hard negative result</h2>
+
+          <p>First-motion polarity is where the pipeline fails most clearly. The polarity task asks whether the first P-wave motion is up or down. That sounds simple, but in practice it can be a subtle visual discrimination problem, especially on noisy traces.</p>
+
+          <p>Earlier versions of the pipeline centered the polarity zoom on Gemini's own P pick. That left an ambiguity: maybe Gemini could read polarity, but the zoom window was sometimes centered on the wrong time. The final experiment removes that confound. When USGS analyst P picks are available, the polarity zoom is centered on the analyst's published pick instead of Gemini's pick. A 3 Hz high-pass filter is applied to make the onset sharper.</p>
+
+          <p>Even then, polarity agreement is 47.1% across committed UP/DOWN pairs, basically chance. On the subset where the window is centered on the analyst pick, agreement is 33.3%, although that slice is small. On high-SNR traces, agreement reaches only 55.3%, still barely above chance. The model emits UP about 55% of the time regardless of analyst polarity, and there is no clean systematic flip that could be corrected by relabeling.</p>
+
+          <figure class="essay-figure essay-figure-wide">
+            <img src="images/seismo-beachballs.png" alt="Comparison of Gemini-derived HASH focal mechanisms and USGS reference beachballs" loading="lazy" />
+            <figcaption>The downstream focal-mechanism comparison makes the polarity failure visible. HASH is operating on chance-level polarities, so the recovered beachballs do not match reference mechanisms.</figcaption>
+          </figure>
+
+          <p>This is the cleanest negative result in the paper. It rules out the easy explanations. The failure is not just bad window placement. It is not fixed by high-pass filtering. It appears to be a vision-model capability ceiling for subtle first-motion features in this catalog's SNR and magnitude regime.</p>
+
+          <h2>What the paper says overall</h2>
+
+          <p>The results split into three categories.</p>
+
+          <p>First, some tasks are directly useful. Magnitude estimation, when forced and evaluated on the correct scale, is much better than expected. Phase picking is useful above an SNR floor. These are the tasks where the model can extract enough signal from a waveform image to support a workflow.</p>
+
+          <p>Second, some tasks are useful only when paired with deterministic checks. Location is the main example. Gemini-derived picks can support good locations, but only when station geometry is adequate. The location result should be trusted through the inversion diagnostics, not through the model's confidence.</p>
+
+          <p>Third, some tasks are not ready. First-motion polarity reading does not work in this setup. Because polarity is the input to focal-mechanism estimation, the focal mechanisms fail downstream. The correct conclusion is not to report optimistic beachballs, but to report the polarity failure directly.</p>
+
+          <h2>Limitations</h2>
+
+          <p>The real-event catalog has 23 manually curated events. That is enough to probe the workflow, but not enough to claim general deployment readiness. The catalog is heterogeneous, but still weighted toward local and regional events, especially in the western United States.</p>
+
+          <p>The location inversion is also simplified. It uses a constant P-wave velocity and fixes depth to the USGS value. A production locator would use more realistic velocity models and more complete uncertainty handling. The HASH stage is also simplified relative to professional focal-mechanism workflows.</p>
+
+          <p>The results are Gemini-specific. The primary catalog results use Gemini 3.1 Pro at temperature 0.1, with observed run-to-run drift in location and magnitude. Other multimodal LLMs might behave differently, especially on polarity or low-SNR picking.</p>
+
+          <p>Finally, the study treats USGS phase picks, magnitudes, polarities, and mechanisms as reference values. Those references are analyst products with their own uncertainty, especially for small or sparsely recorded events.</p>
+
+          <h2>What I take from it</h2>
+
+          <p>I think the most interesting part of the project is not that an LLM can look at a seismogram and say something plausible. Models are very good at plausibility. The interesting part is seeing what happens when those outputs are forced into a physical workflow where they either support a downstream computation or they do not.</p>
+
+          <p>That framing makes the result less hype-y and more useful. Gemini can contribute to waveform interpretation, especially for magnitude and high-SNR phase picking. But the surrounding pipeline has to decide when the output should be trusted, when the geometry makes an inversion meaningless, and when a task should be handed back to conventional signal processing.</p>
+
+          <p>The next version of this work should compare the Gemini P picks against purpose-built seismic pickers such as PhaseNet and EQTransformer, scale the catalog, and replace the LLM polarity step with a deterministic or domain-trained method. The broader lesson is that multimodal LLMs may be useful scientific assistants, but only when their outputs are embedded in workflows that can test, constrain, and reject them.</p>
+
+          <p>
+            <a href="files/EPS_210_Paper (2) copy.pdf">Read the PDF</a>
+            ·
+            <a href="https://github.com/AdvikarA/Seismo-LLM" target="_blank" rel="noreferrer">Code and data</a>
+            ·
+            <a href="projects.html#project-group-research">Back to projects</a>
+          </p>
+        </div>
+      </article>
+    </main>
+
+    <footer class="footer">
+      <p id="footer-copy"></p>
+    </footer>
+  </div>
+
+  <script src="site-data.js"></script>
+  <script src="content.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
