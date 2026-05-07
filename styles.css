@@ -606,6 +606,16 @@ img {
   color: var(--text);
 }
 
+.project-entry-toggle-arrow {
+  display: inline-block;
+  transition: transform 180ms ease;
+  font-style: normal;
+}
+
+.project-entry.is-expanded .project-entry-toggle-arrow {
+  transform: rotate(90deg);
+}
+
 .project-entry-details {
   display: none;
   margin-top: 20px;

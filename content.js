@@ -26,7 +26,7 @@ const PROJECT_MOMENTUM_EOSS = projectEntry({
   featured: true,
   featureLabel: "Featured research",
   paragraphs: [
-    "A research project on how momentum changes the instability boundary that stochastic gradient methods organize around during neural network training.",
+    "A research project on how momentum changes the instability boundary that stochastic gradient methods organize around during neural network training. Published to ICML 2026.",
     "The paper studies SGD with momentum and Nesterov acceleration through the Edge of Stochastic Stability lens, showing that momentum does not have one simple stability threshold in mini-batch training. Instead, the curvature level selected by training depends strongly on batch size."
   ],
   bullets: [
@@ -92,6 +92,7 @@ const T4SG_HOPEBOUND = projectEntry({
   meta: "2025 · React · Supabase · Project Management",
   slideRatio: "1.62 / 1",
   images: [
+    projectImage("images/hopeboundoverview.png", "Hopebound project overview"),
     projectImage("images/hopebound1.png", "Hopebound dashboard"),
     projectImage("images/hopebound2.png", "Hopebound impact metrics"),
     projectImage("images/hopebound3.png", "Hopebound admin panel"),
@@ -135,6 +136,7 @@ const T4SG_GRANSON_AI = projectEntry({
   meta: "2026 · Harvard Tech for Social Good × Computers 4 People",
   slideRatio: "2.32 / 1",
   images: [
+    projectImage("images/c4poverview.png", "Granson AI project overview"),
     projectImage("images/c4p1.png", "Granson AI home, tutorial, and options overlay screens"),
     projectImage("images/c4p2.png", "Granson AI interactive tutorial running over a browser")
   ],
@@ -152,9 +154,7 @@ const T4SG_GRANSON_AI = projectEntry({
     "Tutorial infrastructure for app tours, Google search, Gmail, Wi-Fi, and interactive user-prompted lessons that can update based on what is visible on screen"
   ],
   impact: "The team turned digital literacy help into a contextual desktop workflow: users could ask for help, receive screen-aware instructions, and move through tutorials without leaving the application they were trying to use.",
-  links: [
-    { href: "files/C4P x T4SG FINAL .pdf", label: "Final presentation" }
-  ]
+  links: []
 });
 
 const T4SG_PROJECTS = [

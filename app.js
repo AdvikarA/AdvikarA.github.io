@@ -511,7 +511,7 @@
                     ` : ""}
                     ${!entry.featured && entry.link ? `<p class="project-entry-link"><a href="${entry.link}" target="_blank" rel="noreferrer">${entry.linkLabel || "Link"}</a></p>` : ""}
                     ${(entry.paragraphs.slice(entry.featured ? 2 : 1).length > 0 || (entry.bullets && entry.bullets.length > 0)) ? `
-                      <button class="project-entry-toggle" type="button" aria-expanded="false" data-entry-toggle>Details</button>
+                      <button class="project-entry-toggle" type="button" aria-expanded="false" data-entry-toggle>Details <span class="project-entry-toggle-arrow">›</span></button>
                     ` : ""}
                   </div>
                   ${entry.images && entry.images.length ? `
@@ -842,7 +842,7 @@
         const expanded = entry.classList.contains("is-expanded");
         entry.classList.toggle("is-expanded", !expanded);
         btn.setAttribute("aria-expanded", String(!expanded));
-        btn.textContent = expanded ? "Details" : "Close";
+        btn.innerHTML = expanded ? "Details <span class=\"project-entry-toggle-arrow\">›</span>" : "Close <span class=\"project-entry-toggle-arrow\">›</span>";
       });
     });
   }
