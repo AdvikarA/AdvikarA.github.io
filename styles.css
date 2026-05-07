@@ -523,6 +523,14 @@ img {
   background: rgba(49, 90, 154, 0.045);
 }
 
+.project-entry-featured.project-entry-featured-plain {
+  border-left: none;
+  border-top: none;
+  border-bottom: none;
+  background: none;
+  padding-left: 0;
+}
+
 .project-entry-split {
   display: block;
 }

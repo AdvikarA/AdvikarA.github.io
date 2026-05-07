@@ -492,7 +492,7 @@
         ${project.entries ? `
           <div class="project-entries">
             ${project.entries.map((entry, entryIndex) => `
-              <section class="project-entry project-entry-split ${entry.featured ? "project-entry-featured" : ""} ${entry.images && entry.images.length ? "" : "project-entry-no-media"}">
+              <section class="project-entry project-entry-split ${entry.featured ? "project-entry-featured" : ""} ${entry.featuredPlain ? "project-entry-featured-plain" : ""} ${entry.images && entry.images.length ? "" : "project-entry-no-media"}">
                 <div class="project-entry-top ${entry.images && entry.images.length ? "" : "project-entry-top-no-media"}">
                   <div class="project-entry-body">
                     ${entry.featured ? `<div class="project-entry-kicker">${entry.featureLabel || "Featured"}</div>` : ""}

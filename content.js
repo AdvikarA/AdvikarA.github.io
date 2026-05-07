@@ -15,6 +15,7 @@ function projectEntry(config) {
     linkLabel: config.linkLabel || "",
     links: config.links || [],
     featured: config.featured || false,
+    featuredPlain: config.featuredPlain || false,
     featureLabel: config.featureLabel || ""
   };
 }
@@ -199,13 +200,9 @@ const PROJECT_EARTHQUAKE = projectEntry({
   title: "Applications of Large Language Models in Seismology",
   meta: "2025 · Google × Harvard Earth & Planetary Sciences · Gemini · Seismology",
   featured: true,
-  featureLabel: "Research note",
-  slideRatio: "2.02 / 1",
-  images: [
-    projectImage("images/seismo-catalog-map.png", "Catalog of real earthquake events used in the seismology LLM pipeline"),
-    projectImage("images/seismo-six-panel-waveform.png", "Six-panel raw and bandpass seismogram image passed to Gemini"),
-    projectImage("images/seismo-ai-catalog-site.png", "AI-generated earthquake catalog site")
-  ],
+  featuredPlain: true,
+  featureLabel: "Featured research",
+  images: [],
   paragraphs: [
     "A completed research project with the Harvard Earth & Planetary Sciences Department studying whether Gemini can interpret three-component seismogram images inside an end-to-end seismology workflow.",
     "The project moved from controlled waveform datasets to a curated 23-event earthquake catalog, testing classification, phase picking, earthquake location, magnitude estimation, first-motion polarity reading, and focal-mechanism inference."
