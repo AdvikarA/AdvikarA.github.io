@@ -503,7 +503,16 @@
                         ${renderEntryLinks(entry)}
                       </p>
                     ` : ""}
-                    ${entry.paragraphs.slice(0, 2).map(paragraph => `<p class="project-entry-copy">${paragraph}</p>`).join("")}
+                    ${entry.paragraphs.slice(0, entry.featured ? 2 : 1).map(paragraph => `<p class="project-entry-copy">${paragraph}</p>`).join("")}
+                    ${!entry.featured && entry.links && entry.links.length ? `
+                      <p class="project-entry-link">
+                        ${renderEntryLinks(entry)}
+                      </p>
+                    ` : ""}
+                    ${!entry.featured && entry.link ? `<p class="project-entry-link"><a href="${entry.link}" target="_blank" rel="noreferrer">${entry.linkLabel || "Link"}</a></p>` : ""}
+                    ${(entry.paragraphs.slice(entry.featured ? 2 : 1).length > 0 || (entry.bullets && entry.bullets.length > 0)) ? `
+                      <button class="project-entry-toggle" type="button" aria-expanded="false" data-entry-toggle>Details</button>
+                    ` : ""}
                   </div>
                   ${entry.images && entry.images.length ? `
                     <div class="project-entry-media">
@@ -536,21 +545,17 @@
                     </div>
                   ` : ""}
                 </div>
-                <div class="project-entry-details">
-                  ${entry.paragraphs.slice(2).map(paragraph => `<p class="project-entry-copy">${paragraph}</p>`).join("")}
+                ${(entry.paragraphs.slice(entry.featured ? 2 : 1).length > 0 || (entry.bullets && entry.bullets.length > 0)) ? `
+                <div class="project-entry-details" data-entry-details>
+                  ${entry.paragraphs.slice(entry.featured ? 2 : 1).map(paragraph => `<p class="project-entry-copy">${paragraph}</p>`).join("")}
                   ${entry.bullets && entry.bullets.length ? `
                     <ul class="project-entry-list">
                       ${entry.bullets.map(item => `<li>${item}</li>`).join("")}
                     </ul>
                   ` : ""}
-                  <p class="project-entry-impact"><strong>Impact:</strong> ${entry.impact}</p>
-                  ${!entry.featured && entry.links && entry.links.length ? `
-                    <p class="project-entry-link">
-                      ${renderEntryLinks(entry)}
-                    </p>
-                  ` : ""}
-                  ${entry.link ? `<p class="project-entry-link"><a href="${entry.link}" target="_blank" rel="noreferrer">${entry.linkLabel || "Link"}</a></p>` : ""}
+                  ${entry.impact ? `<p class="project-entry-impact"><strong>Impact:</strong> ${entry.impact}</p>` : ""}
                 </div>
+                ` : ""}
               </section>
             `).join("")}
           </div>
@@ -829,6 +834,19 @@
     frameLoop();
   }
 
+  function initProjectToggles() {
+    document.querySelectorAll("[data-entry-toggle]").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const entry = btn.closest(".project-entry");
+        const details = entry.querySelector("[data-entry-details]");
+        const expanded = entry.classList.contains("is-expanded");
+        entry.classList.toggle("is-expanded", !expanded);
+        btn.setAttribute("aria-expanded", String(!expanded));
+        btn.textContent = expanded ? "Details" : "Close";
+      });
+    });
+  }
+
   function initProjectSlideshows() {
     const slideshows = document.querySelectorAll("[data-project-slideshow]");
     slideshows.forEach(slideshow => {
@@ -877,6 +895,7 @@
   renderBookshelf();
   renderProjects();
   renderContact();
+  initProjectToggles();
   initProjectSlideshows();
   initHomeTrees();
   initPetalField();
