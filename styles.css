@@ -360,6 +360,19 @@ img {
   transform: translateX(-50%);
 }
 
+.essay-figure-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+  width: min(var(--wide), calc(100vw - 56px));
+  margin: 36px 0 36px 50%;
+  transform: translateX(-50%);
+}
+
+.essay-figure-grid .essay-figure {
+  margin: 0;
+}
+
 .essay-figure-hero {
   width: 100%;
   margin: -18px 0 48px;
@@ -872,5 +885,9 @@ img {
 
   .essay-body h2 {
     font-size: 28px;
+  }
+
+  .essay-figure-grid {
+    grid-template-columns: 1fr;
   }
 }

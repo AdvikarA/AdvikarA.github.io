@@ -579,6 +579,7 @@
     let backgroundSprite = null;
     let planetSprite = null;
     let moonSprite = null;
+    let scrollOffset = window.scrollY || 0;
     const random = new SeededRandom(2026);
 
     function resize() {
@@ -803,7 +804,7 @@
       }
 
       const cx = width * 0.8;
-      const cy = Math.min(460, window.innerHeight * 0.4);
+      const cy = Math.min(460, window.innerHeight * 0.4) - scrollOffset;
       const planetRadius = Math.min(window.innerWidth, window.innerHeight) * 0.165;
       const orbitRx = planetRadius * 1.4;
       const orbitRy = planetRadius * 0.3;
@@ -825,6 +826,9 @@
     }
 
     window.addEventListener("resize", resize);
+    window.addEventListener("scroll", () => {
+      scrollOffset = window.scrollY || 0;
+    }, { passive: true });
     resize();
     frameLoop();
   }

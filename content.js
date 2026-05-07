@@ -198,6 +198,8 @@ const PROJECT_KALSHI = projectEntry({
 const PROJECT_EARTHQUAKE = projectEntry({
   title: "Applications of Large Language Models in Seismology",
   meta: "2025 · Google × Harvard Earth & Planetary Sciences · Gemini · Seismology",
+  featured: true,
+  featureLabel: "Research note",
   slideRatio: "2.02 / 1",
   images: [
     projectImage("images/seismo-catalog-map.png", "Catalog of real earthquake events used in the seismology LLM pipeline"),
@@ -217,7 +219,7 @@ const PROJECT_EARTHQUAKE = projectEntry({
   ],
   impact: "The work separates where multimodal LLMs are useful in seismology from where physics, station geometry, and signal-processing constraints still dominate.",
   links: [
-    { href: "gemini-earthquake-research.html", label: "Read the research note" },
+    { href: "gemini-earthquake-research.html", label: "Research note" },
     { href: "files/EPS_210_Paper (2) copy.pdf", label: "PDF" },
     { href: "https://github.com/AdvikarA/Seismo-LLM", label: "Code" }
   ]
@@ -296,8 +298,8 @@ window.SITE_CONTENT = {
         blurb: "Research-oriented work spanning geoscience, quantum computing, planetary vision, and current earthquake modeling efforts.",
         entries: [
           PROJECT_MOMENTUM_EOSS,
-          PROJECT_DIAGQUANT,
           PROJECT_EARTHQUAKE,
+          PROJECT_DIAGQUANT,
           PROJECT_QAOA,
           PROJECT_FACIES,
           PROJECT_BOULDER

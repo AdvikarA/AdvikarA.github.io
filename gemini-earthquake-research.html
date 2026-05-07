@@ -59,25 +59,26 @@
 
           <p>Each station-event pair is rendered as an image before being passed to Gemini. The main seismogram-interpretation input has six panels: raw east, north, and vertical components on the top row, and the same three components after a 1.0-2.0 Hz Butterworth bandpass on the bottom row.</p>
 
-          <figure class="essay-figure essay-figure-wide">
-            <img src="images/seismo-six-panel-waveform.png" alt="Six-panel raw and filtered seismogram image used as Gemini input" loading="lazy" />
-            <figcaption>The six-panel waveform image passed to the seismogram-interpretation prompt. The filtered row makes P and S arrivals easier to see while preserving the raw waveform context.</figcaption>
-          </figure>
+          <div class="essay-figure-grid">
+            <figure class="essay-figure">
+              <img src="images/seismo-six-panel-waveform.png" alt="Six-panel raw and filtered seismogram image used as Gemini input" loading="lazy" />
+              <figcaption>The six-panel waveform image passed to the seismogram-interpretation prompt.</figcaption>
+            </figure>
+            <figure class="essay-figure">
+              <img src="images/seismo-polarity-zoom.png" alt="High-pass filtered four-second waveform zoom used for first-motion polarity reading" loading="lazy" />
+              <figcaption>The polarity-reading input is centered on a P pick and high-pass filtered to expose the first motion.</figcaption>
+            </figure>
+          </div>
 
           <p>This visual representation ended up mattering a lot. Earlier plots used sample index on the x-axis, and the model often failed to translate samples into physical arrival times. The final plots use seconds since trace start, adaptive major ticks, and one-second minor grid lines. The inputs are unmarked: there are no ground-truth P or S arrival markers drawn on the image, because that would leak the answer into the prompt.</p>
 
           <p>The polarity task uses a different image: a four-second zoom around the P arrival, high-pass filtered at 3 Hz. This is meant to sharpen the first motion, which is the initial upward or downward deflection used in focal-mechanism analysis.</p>
 
-          <figure class="essay-figure essay-figure-wide">
-            <img src="images/seismo-polarity-zoom.png" alt="High-pass filtered four-second waveform zoom used for first-motion polarity reading" loading="lazy" />
-            <figcaption>The polarity-reading input is centered on a P pick and high-pass filtered to expose the first motion. Even with this alignment, Gemini did not read polarity above chance.</figcaption>
-          </figure>
-
           <h2>The pipeline</h2>
 
           <p>The real-event catalog pipeline has eight stages. Only two are LLM calls.</p>
 
-          <figure class="essay-figure essay-figure-wide">
+          <figure class="essay-figure">
             <img src="images/seismo-ai-catalog-site.png" alt="AI-generated earthquake catalog website from the LLM-driven seismology pipeline" loading="lazy" />
             <figcaption>A public-facing AI-generated catalog site was built from the same outputs as the paper tables: waveform images, Gemini interpretations, locations, magnitudes, polarities, and focal mechanisms.</figcaption>
           </figure>
@@ -110,10 +111,16 @@
             <li><strong>Run 5:</strong> The final version adds azimuth-balanced station selection, analyst-centered polarity zooms where available, and per-event magnitude-scale substitution.</li>
           </ul>
 
-          <figure class="essay-figure essay-figure-wide">
-            <img src="images/seismo-location-runs.png" alt="Per-event location error across Gemini seismology pipeline runs" loading="lazy" />
-            <figcaption>Per-event location error across the run progression. The final run wins on median location error, but the mean is affected by a few geometry-limited regressions.</figcaption>
-          </figure>
+          <div class="essay-figure-grid">
+            <figure class="essay-figure">
+              <img src="images/seismo-location-runs.png" alt="Per-event location error across Gemini seismology pipeline runs" loading="lazy" />
+              <figcaption>Per-event location error across the run progression.</figcaption>
+            </figure>
+            <figure class="essay-figure">
+              <img src="images/seismo-magnitude.png" alt="Gemini magnitude estimates versus USGS earthquake magnitudes" loading="lazy" />
+              <figcaption>Run 5 magnitude estimates versus USGS truth.</figcaption>
+            </figure>
+          </div>
 
           <p>Run 5 has the best median result across the main metrics: median location error of 9.6 km, magnitude mean absolute error of 0.295, and magnitude median absolute error of 0.125. But the run progression also shows why a single score is misleading. Some improvements come from model capability. Others come from prompt constraints. The largest location improvements come from deterministic infrastructure and station geometry, not from the LLM alone.</p>
 
@@ -121,28 +128,24 @@
 
           <p>The most surprising positive result is magnitude estimation. In the final run, Gemini estimates earthquake magnitude from raw-count waveform images with mean absolute error of 0.295 magnitude units and median absolute error of 0.125 on the requested USGS magnitude scale. Sixteen of 23 events are within 0.5 magnitude units, 21 of 23 are within 1.0, and 13 are within 0.1.</p>
 
-          <figure class="essay-figure essay-figure-wide">
-            <img src="images/seismo-magnitude.png" alt="Gemini magnitude estimates versus USGS earthquake magnitudes" loading="lazy" />
-            <figcaption>Run 5 magnitude estimates versus USGS truth. The main outlier is a Turkey event served from AFAD waveforms with non-standard station calibration.</figcaption>
-          </figure>
-
           <p>This is interesting because the model does not have instrument-response-corrected ground motion. It is looking at waveform images in raw counts. The result suggests Gemini can infer useful magnitude proxies from amplitude, duration, coda shape, and other visual cues. This is not a replacement for calibrated seismological magnitude estimation, but it may be useful for first-pass triage.</p>
 
           <h2>Phase picking: useful above the SNR floor</h2>
 
           <p>Phase picking is evaluated against analyst P picks from USGS phase data. Across 117 matched station-event pairs in Run 5, the median absolute residual is 0.56 seconds. The Pearson correlation between predicted and analyst arrival time is 0.72. About 46% of picks fall within 0.5 seconds, 67% within 1 second, and 85% within 2 seconds.</p>
 
-          <figure class="essay-figure essay-figure-wide">
-            <img src="images/seismo-pick-scatter.png" alt="Gemini P arrival predictions compared with analyst P arrivals" loading="lazy" />
-            <figcaption>Predicted versus analyst P-arrival time across 117 matched station-event pairs.</figcaption>
-          </figure>
+          <div class="essay-figure-grid">
+            <figure class="essay-figure">
+              <img src="images/seismo-pick-scatter.png" alt="Gemini P arrival predictions compared with analyst P arrivals" loading="lazy" />
+              <figcaption>Predicted versus analyst P-arrival time across 117 matched pairs.</figcaption>
+            </figure>
+            <figure class="essay-figure">
+              <img src="images/seismo-pick-snr.png" alt="Gemini P-pick error as a function of signal-to-noise ratio" loading="lazy" />
+              <figcaption>The SNR cliff: above about 20 dB, picks are usable; below it, errors become large.</figcaption>
+            </figure>
+          </div>
 
           <p>The mean absolute residual is worse, around 3.0 seconds, because the error distribution is heavy-tailed. A few low-SNR cases dominate the mean. Stratifying by SNR makes the pattern clear: traces above about 20 dB SNR have median pick residual around 0.5 seconds, while the 10-20 dB bin jumps to roughly 18.6 seconds.</p>
-
-          <figure class="essay-figure essay-figure-wide">
-            <img src="images/seismo-pick-snr.png" alt="Gemini P-pick error as a function of signal-to-noise ratio" loading="lazy" />
-            <figcaption>The SNR cliff is one of the cleanest operational findings: above about 20 dB, picks are usable; below it, errors become large.</figcaption>
-          </figure>
 
           <p>This is exactly the kind of result that matters in deployment. The useful claim is not "Gemini can always pick phases." The useful claim is "Gemini-derived picks can be trusted only above a measurable SNR threshold, and should be rejected below it."</p>
 
