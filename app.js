@@ -572,9 +572,13 @@
     let height = 0;
     let dpr = 1;
     let time = 0.28;
+    let lastFrameTime = 0;
     let stars = [];
     let planetSquares = [];
     let moonSquares = [];
+    let backgroundSprite = null;
+    let planetSprite = null;
+    let moonSprite = null;
     const random = new SeededRandom(2026);
 
     function resize() {
@@ -588,15 +592,15 @@
       generateScene();
     }
 
-    function rotateSquare(x, y, size, angle, fill, alpha) {
-      ctx.save();
-      ctx.translate(x, y);
-      ctx.rotate(angle);
-      ctx.globalAlpha = alpha;
-      ctx.fillStyle = fill;
-      ctx.fillRect(-size / 2, -size / 2, size, size);
-      ctx.restore();
-      ctx.globalAlpha = 1;
+    function rotateSquare(targetCtx, x, y, size, angle, fill, alpha) {
+      targetCtx.save();
+      targetCtx.translate(x, y);
+      targetCtx.rotate(angle);
+      targetCtx.globalAlpha = alpha;
+      targetCtx.fillStyle = fill;
+      targetCtx.fillRect(-size / 2, -size / 2, size, size);
+      targetCtx.restore();
+      targetCtx.globalAlpha = 1;
     }
 
     function lerp(a, b, amount) {
@@ -622,7 +626,7 @@
     function generateStars() {
       stars = [];
       random.seed = 2026;
-      const count = window.innerWidth < 700 ? 120 : 240;
+      const count = window.innerWidth < 700 ? 60 : 110;
       const colors = [
         "rgba(121, 137, 227, 0.58)",
         "rgba(141, 151, 233, 0.54)",
@@ -721,29 +725,54 @@
         planetRadius,
         [52, 46, 170],
         [240, 233, 252],
-        1500
+        window.innerWidth < 700 ? 260 : 420
       );
 
       moonSquares = generateMoonSquares(
         moonRadius,
         [196, 163, 74],
         [252, 242, 208],
-        420
+        window.innerWidth < 700 ? 80 : 120
       );
 
       generateStars();
+      backgroundSprite = renderBackgroundSprite();
+      planetSprite = renderObjectSprite(planetRadius, planetSquares);
+      moonSprite = renderObjectSprite(moonRadius, moonSquares);
     }
 
-    function drawBackground() {
+    function renderBackgroundSprite() {
+      const sprite = document.createElement("canvas");
+      sprite.width = Math.floor(width * dpr);
+      sprite.height = Math.floor(height * dpr);
+      const spriteCtx = sprite.getContext("2d");
+      if (!spriteCtx) return null;
+      spriteCtx.setTransform(dpr, 0, 0, dpr, 0, 0);
       stars.forEach(star => {
-        rotateSquare(star.x, star.y, star.size, star.angle, star.color, star.alpha);
+        rotateSquare(spriteCtx, star.x, star.y, star.size, star.angle, star.color, star.alpha);
       });
+      return sprite;
     }
 
-    function drawSquareObject(cx, cy, squares) {
+    function renderObjectSprite(radius, squares) {
+      const padding = 28;
+      const size = Math.ceil((radius + padding) * 2);
+      const sprite = document.createElement("canvas");
+      sprite.width = Math.floor(size * dpr);
+      sprite.height = Math.floor(size * dpr);
+      const spriteCtx = sprite.getContext("2d");
+      if (!spriteCtx) return null;
+      spriteCtx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      const center = size / 2;
       squares.forEach(square => {
-        rotateSquare(cx + square.x, cy + square.y, square.size, square.angle, square.color, square.alpha);
+        rotateSquare(spriteCtx, center + square.x, center + square.y, square.size, square.angle, square.color, square.alpha);
       });
+      return { canvas: sprite, size };
+    }
+
+    function drawSprite(sprite, cx, cy) {
+      if (!sprite) return;
+      ctx.drawImage(sprite.canvas, cx - sprite.size / 2, cy - sprite.size / 2, sprite.size, sprite.size);
     }
 
     function getOrbitPoint(cx, cy, rx, ry, rotation, angle) {
@@ -756,14 +785,22 @@
       };
     }
 
-    function frameLoop() {
+    function frameLoop(timestamp) {
+      window.requestAnimationFrame(frameLoop);
+
       if (document.hidden) {
-        window.requestAnimationFrame(frameLoop);
         return;
       }
 
+      if (timestamp - lastFrameTime < 42) {
+        return;
+      }
+
+      lastFrameTime = timestamp;
       ctx.clearRect(0, 0, width, height);
-      drawBackground();
+      if (backgroundSprite) {
+        ctx.drawImage(backgroundSprite, 0, 0, width, height);
+      }
 
       const cx = width * 0.8;
       const cy = Math.min(460, window.innerHeight * 0.4);
@@ -775,17 +812,16 @@
       const moonInFront = Math.sin(time) > 0;
 
       if (!moonInFront) {
-        drawSquareObject(moon.x, moon.y, moonSquares);
+        drawSprite(moonSprite, moon.x, moon.y);
       }
 
-      drawSquareObject(cx, cy, planetSquares);
+      drawSprite(planetSprite, cx, cy);
 
       if (moonInFront) {
-        drawSquareObject(moon.x, moon.y, moonSquares);
+        drawSprite(moonSprite, moon.x, moon.y);
       }
 
-      time += 0.02;
-      window.requestAnimationFrame(frameLoop);
+      time += 0.04;
     }
 
     window.addEventListener("resize", resize);
