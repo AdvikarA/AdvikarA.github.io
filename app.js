@@ -579,11 +579,7 @@
 
     function resize() {
       width = document.documentElement.clientWidth;
-      height = Math.max(
-        document.body.scrollHeight,
-        document.documentElement.scrollHeight,
-        window.innerHeight
-      );
+      height = window.innerHeight;
       dpr = Math.min(window.devicePixelRatio || 1, 2);
       canvas.width = Math.floor(width * dpr);
       canvas.height = Math.floor(height * dpr);
@@ -761,6 +757,11 @@
     }
 
     function frameLoop() {
+      if (document.hidden) {
+        window.requestAnimationFrame(frameLoop);
+        return;
+      }
+
       ctx.clearRect(0, 0, width, height);
       drawBackground();
 
