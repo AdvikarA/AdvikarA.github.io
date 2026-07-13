@@ -448,10 +448,11 @@
 
     title.textContent = essay.title;
     $("essay-meta").textContent = essay.date;
-    $("essay-body").innerHTML = [
-      `<p>${essay.intro}</p>`,
-      ...essay.body.map(paragraph => `<p>${paragraph}</p>`)
-    ].join("");
+    const renderBlock = block => (block.trim().charAt(0) === "<" ? block : `<p>${block}</p>`);
+    const blocks = [];
+    if (essay.intro) blocks.push(renderBlock(essay.intro));
+    (essay.body || []).forEach(block => blocks.push(renderBlock(block)));
+    $("essay-body").innerHTML = blocks.join("");
   }
 
   function renderBookshelf() {

@@ -312,6 +312,28 @@ img {
   color: var(--muted);
 }
 
+/* Blog (Thoughts) + Contact: match the site frame so the masthead + footer
+   line up with the rest of the site; keep the reading column left-aligned. */
+.writing-page .page,
+.contact-page .page {
+  max-width: 1280px;
+}
+
+.writing-page .main-column,
+.contact-page .main-column {
+  max-width: min(1120px, 100%);
+}
+
+.writing-page .essay-body {
+  font-size: 18px;
+  line-height: 1.8;
+}
+
+/* Keep media at a comfortable size even though the text runs full width */
+.writing-page .essay-carousel {
+  max-width: 760px;
+}
+
 .essay-header {
   margin-bottom: 56px;
 }
@@ -348,6 +370,30 @@ img {
 
 .essay-body li + li {
   margin-top: 10px;
+}
+
+/* Small set-apart caption / aside blocks (the ^^ ... ^^ notes) */
+.essay-body .essay-aside {
+  display: block;
+  margin: 30px 0;
+  padding: 4px 0 4px 20px;
+  border-left: 2px solid var(--line);
+  color: var(--faint);
+  font-size: 16px;
+  line-height: 1.6;
+  font-style: italic;
+}
+
+.essay-body .essay-list {
+  font-size: inherit;
+}
+
+.essay-carousel {
+  margin: 44px 0;
+}
+
+.essay-carousel .project-slide-dots {
+  justify-content: center;
 }
 
 .essay-figure {

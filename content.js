@@ -279,6 +279,62 @@ const PROJECT_BOULDER = projectEntry({
   linkLabel: "Repository"
 });
 
+const WRITING_ICML = {
+  slug: "icml-26",
+  title: "ICML 26",
+  date: "July 2026",
+  summary: "a bunch of random thoughts"
+};
+
+const ESSAY_ICML = {
+  title: "ICML 26",
+  date: "a bunch of random thoughts",
+  intro: `One of my favorite feelings is the ambient inspiration from a talent dense event. Good balance between feeling comparatively behind, feeling good to be present, and feeling like there is a lot to do.`,
+  body: [
+    `<aside class="essay-aside">Some rooms I've felt this in: Mr. Dempsey's room before Science Olympiad Nationals 2022, USESO camp 2023, Architect Labs before HotChips 2025, AI Start Up School 2025, ICML 2026</aside>`,
+    `I probably walked past 500 posters at ICML. I understood exactly what was happening, line by line, in maybe ten of them. Not the best eval, I know, but I definitely felt the knowledge gap in a space I should know better.`,
+    `I've gotten ok at sounding like I know what's going on (some strats I use: toss in a relevant keyword, finish someone's sentence, nod at the right beat). What I actually lack is the depth to make the second-order jumps. So going from just following to "Ok bet, why did you make xyz decision, I see where this breaks and what comes next, etc." It's definitely possible to bridge that gap, especially now. A part of this is continuously finding people who are also chasing that depth. My friend at Yale is in circles where everyone knows what each lab is doing. Even at Harvard, there are freshmen writing workshop papers together for fun. Why do I not know anyone in my year at Harvard like this? Might need to go looking.`,
+    `The path to be standing there, nodding along to the millionth interp poster was interesting. I signed up for a graduate MIT class I had no business taking. I made the professor start a partner-finding spreadsheet and put my name on it first (this was a big deal to me), and that's how I met my coauthor. I worked really hard on the paper that came out of it and got lucky during rebuttals. If I'm honest, I didn't enjoy most of that work.`,
+    `Probably my biggest takeaway is that it matters more than I thought to find something that actually excites you. This is pretty obvious in venture, but I think I underestimated it in academia. I poured months into optimization research when what I really want to do is new architectures, multi-agent systems, etc. It wasn't wasted, but it wasn't optimal either.`,
+    `A few more scattered thoughts:`,
+    `Good research is more accessible than it looks (granted you have GPUs and tokens). There is so much innovation happening, LIVE. Like literally, live, on openreview. The gap between outsider and contributor is smaller than I thought. Same with collaborating with people you admire. I got to meet famous ML researchers who I recognize from papers. They'll happily let you extend their paper if you can actually do it. The whole thing is merit- and ability-bottlenecked, not access-bottlenecked.`,
+    `Finally, there is so much utility in seeing people just beyond where you are. I met up with a friend who has his research goals clearly defined, and watching him be that passionate was inspiring. Putting progress in terms of reachable goals instead of trying to be Yilan Du.`,
+    `<figure class="essay-figure essay-carousel">
+      <div class="project-slideshow" data-project-slideshow>
+        <div class="project-slide-viewport" style="--project-slide-ratio: 4 / 3;">
+          <figure class="project-slide is-active"><img class="project-entry-image" src="images/icml/poster1.jpg" alt="ICML poster" loading="lazy" /></figure>
+          <figure class="project-slide"><img class="project-entry-image" src="images/icml/poster2.jpg" alt="ICML poster" loading="lazy" /></figure>
+          <figure class="project-slide"><img class="project-entry-image" src="images/icml/poster3.jpg" alt="ICML poster" loading="lazy" /></figure>
+          <figure class="project-slide"><img class="project-entry-image" src="images/icml/poster4.jpg" alt="ICML poster" loading="lazy" /></figure>
+          <figure class="project-slide"><img class="project-entry-image" src="images/icml/poster5.jpg" alt="ICML poster" loading="lazy" /></figure>
+          <figure class="project-slide"><img class="project-entry-image" src="images/icml/poster6.jpg" alt="ICML poster" loading="lazy" /></figure>
+          <figure class="project-slide"><img class="project-entry-image" src="images/icml/poster7.jpg" alt="ICML poster" loading="lazy" /></figure>
+          <button class="project-slide-button project-slide-prev" type="button" aria-label="Previous image">&#8592;</button>
+          <button class="project-slide-button project-slide-next" type="button" aria-label="Next image">&#8594;</button>
+        </div>
+        <div class="project-slide-dots" role="tablist" aria-label="ICML posters">
+          <button class="project-slide-dot is-active" type="button" data-project-dot data-slide-index="0" aria-label="Go to image 1"></button>
+          <button class="project-slide-dot" type="button" data-project-dot data-slide-index="1" aria-label="Go to image 2"></button>
+          <button class="project-slide-dot" type="button" data-project-dot data-slide-index="2" aria-label="Go to image 3"></button>
+          <button class="project-slide-dot" type="button" data-project-dot data-slide-index="3" aria-label="Go to image 4"></button>
+          <button class="project-slide-dot" type="button" data-project-dot data-slide-index="4" aria-label="Go to image 5"></button>
+          <button class="project-slide-dot" type="button" data-project-dot data-slide-index="5" aria-label="Go to image 6"></button>
+          <button class="project-slide-dot" type="button" data-project-dot data-slide-index="6" aria-label="Go to image 7"></button>
+        </div>
+      </div>
+      <figcaption>posters I thought were cool enough to take a picture of</figcaption>
+    </figure>`,
+    `On a more technical note, some general observations:`,
+    `<ul class="essay-list">
+      <li>evals and reward verification continues to be super big. The verifier is the reward now (in RLVR a bad verifier corrupts the gradient)</li>
+      <li>Everyone is inventing new benchmarks (which I don't think is necessarily bad)</li>
+      <li>Pushing RLVR past verifiable domains, lot of people using rubric as reward, multiple choice reformulations</li>
+      <li>I saw a lot of diffusion theory stuff, it swept both outstanding papers</li>
+      <li>obfuscation atlas was super cool &mdash; train against a lie detector and the model just learns to hide deception better, unless you add strong KL + detector penalties</li>
+    </ul>`
+  ]
+};
+
 window.SITE_CONTENT = {
   site: {
     home: {
@@ -319,8 +375,10 @@ window.SITE_CONTENT = {
       }
     ]
   },
-  writing: [],
-  essays: {},
+  writing: [WRITING_ICML],
+  essays: {
+    "icml-26": ESSAY_ICML
+  },
   books: [
     {
       title: "The Essays of Michel de Montaigne",
