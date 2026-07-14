@@ -298,7 +298,7 @@ const ESSAY_ICML = {
     `Probably my biggest takeaway is that it matters more than I thought to find something that actually excites you. This is pretty obvious in venture, but I think I underestimated it in academia. I poured months into optimization research when what I really want to do is new architectures, multi-agent systems, etc. It wasn't wasted, but it wasn't optimal either.`,
     `A few more scattered thoughts:`,
     `Good research is more accessible than it looks (granted you have GPUs and tokens). There is so much innovation happening, LIVE. Like literally, live, on openreview. The gap between outsider and contributor is smaller than I thought. Same with collaborating with people you admire. I got to meet famous ML researchers who I recognize from papers. They'll happily let you extend their paper if you can actually do it. The whole thing is merit- and ability-bottlenecked, not access-bottlenecked.`,
-    `Finally, there is so much utility in seeing people just beyond where you are. I met up with a friend who has his research goals clearly defined, and watching him be that passionate was inspiring. Putting progress in terms of reachable goals instead of trying to be Yilan Du.`,
+    `Finally, there is so much utility in seeing people just beyond where you are. I met up with a friend who has his research goals clearly defined, and watching him be that passionate was inspiring. Putting progress in terms of reachable goals instead of trying to be Yilun Du.`,
     `<figure class="essay-figure essay-carousel">
       <div class="project-slideshow" data-project-slideshow>
         <div class="project-slide-viewport" style="--project-slide-ratio: 4 / 3;">
