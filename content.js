@@ -340,7 +340,7 @@ window.SITE_CONTENT = {
     home: {
       introTitle: "The context window",
       introParagraphs: [
-        "I'm Advikar. I study Computer Science and Statistics at Harvard. I'm interested in frontier ML, behavioral AI, interpretibiliy, and applied computational systems. I am currently building a project centered on context-rich systems that model patterns in human behavior over time",
+        "I'm Advikar. I study Computer Science and Statistics at Harvard. I'm interested in frontier ML, behavioral AI, interpretibiliy, and applied computational systems. I am currently building a project centered on solving game theory problems that prevent technological progress",
         "This site is a personal archive and record of my work."
       ]
     },
@@ -375,10 +375,10 @@ window.SITE_CONTENT = {
       }
     ]
   },
-  writing: [WRITING_ICML],
-  essays: {
-    "icml-26": ESSAY_ICML
-  },
+  // ICML 26 is currently private/unpublished. To re-publish, add WRITING_ICML
+  // back to `writing` and "icml-26": ESSAY_ICML back to `essays`.
+  writing: [],
+  essays: {},
   books: [
     {
       title: "The Essays of Michel de Montaigne",
