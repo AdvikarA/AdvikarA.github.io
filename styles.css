@@ -899,6 +899,11 @@ img {
     font-size: 18px;
   }
 
+  .home-page .main-column {
+    margin-left: 0;
+    max-width: 100%;
+  }
+
   .home-layout {
     display: block;
     flex: 0 0 auto;
