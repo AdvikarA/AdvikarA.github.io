@@ -288,7 +288,10 @@
     const canvas = $("tree-mobile");
     if (!canvas) return;
     const parentWidth = canvas.parentElement ? canvas.parentElement.clientWidth : 0;
-    const width = parentWidth || Math.max(0, window.innerWidth - 36);
+    const available = parentWidth || Math.max(0, window.innerWidth - 36);
+    // Cap the canvas width (matches CSS max-width) so the fixed-scale tree keeps
+    // filling its canvas instead of shrinking into a lonely dot on wider screens.
+    const width = Math.min(available, 400);
     HOME_TREE_CONFIG.mobile.cssWidth = width;
     // Canvas is rendered at 2x, so its center in device pixels is `width`.
     HOME_TREE_CONFIG.mobile.startX = width;
