@@ -299,20 +299,27 @@
   function initHomeTrees() {
     if (pageKey !== "home") return;
 
-    layoutMobileTree();
+    let trees = [];
 
-    const trees = [
-      createAnimatedTree($("tree-left"), HOME_TREE_CONFIG.left),
-      createAnimatedTree($("tree-foreground"), HOME_TREE_CONFIG.desktopForeground),
-      createAnimatedTree($("tree-mobile"), HOME_TREE_CONFIG.mobile)
-    ].filter(Boolean);
-
-    function onResize() {
+    function buildTrees() {
+      trees.forEach(tree => tree.destroy && tree.destroy());
       layoutMobileTree();
-      trees.forEach(tree => tree.resize());
+      trees = [
+        createAnimatedTree($("tree-left"), HOME_TREE_CONFIG.left),
+        createAnimatedTree($("tree-foreground"), HOME_TREE_CONFIG.desktopForeground),
+        createAnimatedTree($("tree-mobile"), HOME_TREE_CONFIG.mobile)
+      ].filter(Boolean);
     }
 
-    window.addEventListener("resize", onResize);
+    buildTrees();
+
+    // Rebuild from scratch once a resize settles so the canvases never keep a
+    // stale size/position when crossing the mobile/desktop breakpoint.
+    let resizeTimer = 0;
+    window.addEventListener("resize", function () {
+      window.clearTimeout(resizeTimer);
+      resizeTimer = window.setTimeout(buildTrees, 200);
+    });
   }
 
   function initPetalField() {

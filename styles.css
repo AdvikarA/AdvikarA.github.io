@@ -892,6 +892,11 @@ img {
     height: 360px;
     display: block;
   }
+
+  /* Keep the footer clear of the rooted tree trunk. */
+  .home-page .footer {
+    margin-top: 28px;
+  }
 }
 
 @media (max-width: 700px) {
