@@ -284,17 +284,21 @@
     };
   }
 
+  function layoutMobileTree() {
+    const canvas = $("tree-mobile");
+    if (!canvas) return;
+    const parentWidth = canvas.parentElement ? canvas.parentElement.clientWidth : 0;
+    const width = parentWidth || Math.max(0, window.innerWidth - 36);
+    HOME_TREE_CONFIG.mobile.cssWidth = width;
+    // Canvas is rendered at 2x, so its center in device pixels is `width`.
+    HOME_TREE_CONFIG.mobile.startX = width;
+    HOME_TREE_CONFIG.mobile.startY = HOME_TREE_CONFIG.mobile.cssHeight * 2;
+  }
+
   function initHomeTrees() {
     if (pageKey !== "home") return;
 
-    const mobileCanvas = $("tree-mobile");
-    if (mobileCanvas) {
-      HOME_TREE_CONFIG.mobile.cssWidth = mobileCanvas.parentElement
-        ? mobileCanvas.parentElement.clientWidth
-        : window.innerWidth;
-      HOME_TREE_CONFIG.mobile.startX = HOME_TREE_CONFIG.mobile.cssWidth * 1.6;
-      HOME_TREE_CONFIG.mobile.startY = HOME_TREE_CONFIG.mobile.cssHeight * 2;
-    }
+    layoutMobileTree();
 
     const trees = [
       createAnimatedTree($("tree-left"), HOME_TREE_CONFIG.left),
@@ -303,6 +307,7 @@
     ].filter(Boolean);
 
     function onResize() {
+      layoutMobileTree();
       trees.forEach(tree => tree.resize());
     }
 
