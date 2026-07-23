@@ -295,8 +295,8 @@
     HOME_TREE_CONFIG.mobile.cssWidth = width;
     // Canvas is rendered at 2x, so its center in device pixels is `width`.
     HOME_TREE_CONFIG.mobile.startX = width;
-    // Root the trunk just past the bottom edge so it looks planted, not floating.
-    HOME_TREE_CONFIG.mobile.startY = HOME_TREE_CONFIG.mobile.cssHeight * 2 + 96;
+    // Let the trunk end right at the bottom edge (natural base, not a hard chop).
+    HOME_TREE_CONFIG.mobile.startY = HOME_TREE_CONFIG.mobile.cssHeight * 2;
   }
 
   function initHomeTrees() {

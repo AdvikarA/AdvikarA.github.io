@@ -900,9 +900,9 @@ img {
     display: block;
   }
 
-  /* Keep the footer clear of the rooted tree trunk. */
+  /* Small gap so the trunk reads as standing just above the footer line. */
   .home-page .footer {
-    margin-top: 28px;
+    margin-top: 14px;
   }
 }
 
