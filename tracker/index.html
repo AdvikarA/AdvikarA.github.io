@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="robots" content="noindex, nofollow" />
+<title>Visitors</title>
+<style>
+  :root { --ink:#1d1a16; --muted:#7a7268; --line:#e6e0d8; --bg:#fbf8f3; --panel:#fff; --accent:#8b4a1f; --accent-soft:#f3e4d6; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--bg); color:var(--ink); font:15px/1.5 Georgia, "Iowan Old Style", serif; padding:24px 16px 60px; }
+  .wrap { max-width:1180px; margin:0 auto; }
+  h1 { font-weight:normal; font-size:26px; margin:0 0 4px; }
+  .sub { color:var(--muted); font-size:13px; margin:0 0 20px; }
+  .bar { display:flex; flex-wrap:wrap; gap:8px; align-items:center; margin-bottom:18px; }
+  input, select, button { font:inherit; font-size:14px; padding:6px 10px; border:1px solid var(--line); border-radius:6px; background:var(--panel); color:var(--ink); }
+  input[type=search] { min-width:220px; flex:1; }
+  button { cursor:pointer; }
+  button.primary { background:var(--accent); color:#fff; border-color:var(--accent); }
+  button.danger { color:#9b2c2c; }
+  .stats { display:grid; grid-template-columns:repeat(auto-fit,minmax(130px,1fr)); gap:10px; margin-bottom:22px; }
+  .stat { background:var(--panel); border:1px solid var(--line); border-radius:8px; padding:12px 14px; }
+  .stat b { display:block; font-size:24px; font-weight:normal; }
+  .stat span { color:var(--muted); font-size:12px; }
+  .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:14px; margin-bottom:24px; }
+  .panel { background:var(--panel); border:1px solid var(--line); border-radius:8px; padding:12px 14px; }
+  .panel h2 { font-size:14px; font-weight:normal; color:var(--muted); margin:0 0 8px; letter-spacing:.04em; text-transform:uppercase; }
+  table { width:100%; border-collapse:collapse; font-size:13px; }
+  th { text-align:left; color:var(--muted); font-weight:normal; border-bottom:1px solid var(--line); padding:4px 6px; white-space:nowrap; }
+  td { padding:5px 6px; border-bottom:1px solid #f1ece5; vertical-align:top; }
+  td.num { text-align:right; white-space:nowrap; }
+  .row-bar { height:4px; background:var(--accent-soft); border-radius:2px; margin-top:3px; }
+  .row-bar i { display:block; height:100%; background:var(--accent); border-radius:2px; }
+  .mono { font-family:ui-monospace, Menlo, monospace; font-size:12px; }
+  .tag { display:inline-block; padding:0 6px; border-radius:10px; font-size:11px; background:#eee; }
+  .tag.pageview { background:#e2eef9; } .tag.click { background:#fbe7c6; } .tag.leave { background:#e6e6e6; }
+  .trunc { max-width:320px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+  .muted { color:var(--muted); }
+  .full { overflow-x:auto; }
+  #login { max-width:420px; margin:80px auto; text-align:center; }
+  #login input { width:100%; margin:12px 0; }
+  .hidden { display:none; }
+  .note { font-size:12px; color:var(--muted); margin-top:30px; }
+  .note code { background:#f1ece5; padding:1px 5px; border-radius:4px; }
+</style>
+</head>
+<body>
+<div id="login" class="hidden">
+  <h1>Visitors</h1>
+  <p class="sub">Enter the tracker secret.</p>
+  <input id="secret" type="password" placeholder="TRACKER_SECRET" autocomplete="current-password" />
+  <button class="primary" id="login-btn">Open</button>
+  <p id="login-err" class="muted"></p>
+</div>
+
+<div id="app" class="wrap hidden">
+  <h1>Visitors</h1>
+  <p class="sub" id="meta"></p>
+
+  <div class="bar">
+    <select id="range">
+      <option value="86400000">Last 24 hours</option>
+      <option value="604800000" selected>Last 7 days</option>
+      <option value="2592000000">Last 30 days</option>
+      <option value="0">All loaded</option>
+    </select>
+    <select id="type">
+      <option value="">All events</option>
+      <option value="pageview">Pageviews</option>
+      <option value="click">Clicks</option>
+      <option value="leave">Leaves</option>
+    </select>
+    <input id="search" type="search" placeholder="Filter by IP, page, link, city, UA…" />
+    <button id="refresh">Refresh</button>
+    <label class="muted" style="font-size:13px"><input type="checkbox" id="auto" checked style="padding:0"/> auto</label>
+    <button id="logout">Lock</button>
+    <button id="clear" class="danger">Clear all data</button>
+  </div>
+
+  <div class="stats" id="stats"></div>
+
+  <div class="grid">
+    <div class="panel"><h2>Top pages</h2><table id="pages"></table></div>
+    <div class="panel"><h2>Top clicks</h2><table id="clicks"></table></div>
+    <div class="panel"><h2>Referrers</h2><table id="refs"></table></div>
+    <div class="panel"><h2>Locations</h2><table id="geo"></table></div>
+  </div>
+
+  <div class="panel" style="margin-bottom:24px">
+    <h2>Visitors by IP</h2>
+    <div class="full"><table id="ips"></table></div>
+  </div>
+
+  <div class="panel">
+    <h2>Recent events</h2>
+    <div class="full"><table id="events"></table></div>
+  </div>
+
+  <p class="note">To stop recording your own visits, open the site once with <code>?notrack=1</code> appended (for example <code>https://advikara.github.io/?notrack=1</code>). Undo with <code>?notrack=0</code>.</p>
+</div>
+
+<script>
+(function () {
+  var $ = function (id) { return document.getElementById(id); };
+  var KEY = "tracker_secret";
+  var secret = "";
+  try { secret = localStorage.getItem(KEY) || ""; } catch (e) {}
+  var all = [];
+  var total = 0;
+  var timer = null;
+  var clearArmed = false;
+
+  function esc(s) { return String(s == null ? "" : s).replace(/[&<>"']/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; }); }
+  function fmtTime(ts) { var d = new Date(ts); return d.toLocaleDateString(undefined, { month: "short", day: "numeric" }) + " " + d.toLocaleTimeString(undefined, { hour: "2-digit", minute: "2-digit" }); }
+  function ago(ts) { var s = Math.round((Date.now() - ts) / 1000); if (s < 60) return s + "s ago"; if (s < 3600) return Math.round(s / 60) + "m ago"; if (s < 86400) return Math.round(s / 3600) + "h ago"; return Math.round(s / 86400) + "d ago"; }
+  function device(ua) {
+    ua = ua || "";
+    if (/bot|crawl|spider|slurp|preview|facebookexternalhit|HeadlessChrome/i.test(ua)) return "bot";
+    var os = /iPhone|iPad/.test(ua) ? "iOS" : /Android/.test(ua) ? "Android" : /Mac OS X/.test(ua) ? "macOS" : /Windows/.test(ua) ? "Windows" : /Linux/.test(ua) ? "Linux" : "?";
+    var br = /Edg\//.test(ua) ? "Edge" : /Chrome\//.test(ua) ? "Chrome" : /Firefox\//.test(ua) ? "Firefox" : /Safari\//.test(ua) ? "Safari" : "?";
+    return os + " · " + br;
+  }
+  function place(e) { return [e.city, e.region, e.country].filter(Boolean).join(", "); }
+  function host(u) { try { return new URL(u).hostname.replace(/^www\./, ""); } catch (e) { return u || ""; } }
+  function shortHref(h) {
+    if (!h) return "";
+    try { var u = new URL(h); if (u.hostname === "advikara.github.io") return u.pathname + u.search; return u.hostname.replace(/^www\./, "") + u.pathname.replace(/\/$/, ""); } catch (e) { return h; }
+  }
+
+  function countTable(id, rows, labelFn) {
+    var max = rows.length ? rows[0][1] : 1;
+    $(id).innerHTML = rows.length ? rows.map(function (r) {
+      return "<tr><td>" + labelFn(r[0]) + '<div class="row-bar"><i style="width:' + Math.round(r[1] / max * 100) + '%"></i></div></td><td class="num">' + r[1] + "</td></tr>";
+    }).join("") : '<tr><td class="muted">Nothing yet</td></tr>';
+  }
+  function topN(list, keyFn, n) {
+    var m = {};
+    list.forEach(function (e) { var k = keyFn(e); if (!k) return; m[k] = (m[k] || 0) + 1; });
+    return Object.keys(m).map(function (k) { return [k, m[k]]; }).sort(function (a, b) { return b[1] - a[1]; }).slice(0, n || 12);
+  }
+
+  function render() {
+    var range = Number($("range").value);
+    var type = $("type").value;
+    var q = $("search").value.trim().toLowerCase();
+    var since = range ? Date.now() - range : 0;
+    var list = all.filter(function (e) {
+      if (e.ts < since) return false;
+      if (type && e.type !== type) return false;
+      if (q) {
+        var hay = [e.ip, e.path, e.href, e.text, e.ref, e.city, e.region, e.country, e.ua, e.title].join(" ").toLowerCase();
+        if (hay.indexOf(q) < 0) return false;
+      }
+      return true;
+    });
+    var views = list.filter(function (e) { return e.type === "pageview"; });
+    var clicks = list.filter(function (e) { return e.type === "click"; });
+    var leaves = list.filter(function (e) { return e.type === "leave" && e.seconds > 0; });
+    var uniqIp = {}, uniqVid = {};
+    list.forEach(function (e) { if (e.ip) uniqIp[e.ip] = 1; if (e.vid) uniqVid[e.vid] = 1; });
+    var avgSec = leaves.length ? Math.round(leaves.reduce(function (a, e) { return a + e.seconds; }, 0) / leaves.length) : 0;
+
+    $("stats").innerHTML = [
+      [views.length, "pageviews"],
+      [Object.keys(uniqIp).length, "unique IPs"],
+      [Object.keys(uniqVid).length, "unique browsers"],
+      [clicks.length, "clicks"],
+      [avgSec + "s", "avg time on page"]
+    ].map(function (s) { return "<div class='stat'><b>" + s[0] + "</b><span>" + s[1] + "</span></div>"; }).join("");
+
+    countTable("pages", topN(views, function (e) { return e.path; }), function (k) { return '<span class="mono">' + esc(k) + "</span>"; });
+    countTable("clicks", topN(clicks, function (e) { return e.href || e.text; }), function (k) { return '<span class="trunc mono" title="' + esc(k) + '">' + esc(shortHref(k)) + "</span>"; });
+    countTable("refs", topN(views, function (e) { return e.ref ? host(e.ref) : "(direct)"; }), function (k) { return esc(k); });
+    countTable("geo", topN(views, function (e) { return place(e) || "unknown"; }), function (k) { return esc(k); });
+
+    var byIp = {};
+    list.forEach(function (e) {
+      if (!e.ip) return;
+      var r = byIp[e.ip] || (byIp[e.ip] = { ip: e.ip, n: 0, views: 0, clicks: 0, last: 0, first: Infinity, place: "", ua: "", pages: {} });
+      r.n++;
+      if (e.type === "pageview") { r.views++; r.pages[e.path] = 1; }
+      if (e.type === "click") r.clicks++;
+      if (e.ts > r.last) { r.last = e.ts; r.ua = e.ua; r.place = place(e) || r.place; }
+      if (e.ts < r.first) r.first = e.ts;
+    });
+    var ips = Object.keys(byIp).map(function (k) { return byIp[k]; }).sort(function (a, b) { return b.last - a.last; });
+    $("ips").innerHTML = "<tr><th>IP</th><th>Location</th><th>Device</th><th>Views</th><th>Clicks</th><th>Pages</th><th>First seen</th><th>Last seen</th></tr>" +
+      (ips.length ? ips.slice(0, 200).map(function (r) {
+        var pages = Object.keys(r.pages).join(" ");
+        return "<tr><td class='mono'>" + esc(r.ip) + "</td><td>" + esc(r.place) + "</td><td>" + esc(device(r.ua)) + "</td><td class='num'>" + r.views + "</td><td class='num'>" + r.clicks +
+          "</td><td class='trunc mono' title='" + esc(pages) + "'>" + esc(pages) + "</td><td class='muted'>" + fmtTime(r.first) + "</td><td class='muted'>" + ago(r.last) + "</td></tr>";
+      }).join("") : "<tr><td colspan='8' class='muted'>Nothing yet</td></tr>");
+
+    $("events").innerHTML = "<tr><th>When</th><th>Type</th><th>IP</th><th>Location</th><th>Page</th><th>Detail</th><th>Device</th></tr>" +
+      (list.length ? list.slice(0, 400).map(function (e) {
+        var detail = e.type === "click" ? esc(e.text) + ' <span class="muted mono">' + esc(shortHref(e.href)) + "</span>"
+          : e.type === "leave" ? '<span class="muted">' + e.seconds + "s, scrolled " + e.scroll + "%</span>"
+          : e.ref ? '<span class="muted">from ' + esc(host(e.ref)) + "</span>" : "";
+        return "<tr><td class='muted' title='" + new Date(e.ts).toISOString() + "'>" + fmtTime(e.ts) + "</td><td><span class='tag " + e.type + "'>" + e.type + "</span></td><td class='mono'>" + esc(e.ip) + "</td><td>" + esc(place(e)) +
+          "</td><td class='mono'>" + esc(e.path) + "</td><td class='trunc'>" + detail + "</td><td title='" + esc(e.ua) + "'>" + esc(device(e.ua)) + " <span class='muted'>" + esc(e.screen) + "</span></td></tr>";
+      }).join("") : "<tr><td colspan='7' class='muted'>Nothing yet</td></tr>");
+
+    $("meta").textContent = total + " events stored · showing " + list.length + " · updated " + new Date().toLocaleTimeString();
+  }
+
+  function load() {
+    return fetch("/api/events?limit=5000", { headers: { Authorization: "Bearer " + secret }, cache: "no-store" })
+      .then(function (r) { if (r.status === 401) throw new Error("unauthorized"); if (!r.ok) throw new Error("HTTP " + r.status); return r.json(); })
+      .then(function (d) { all = d.events || []; total = d.total || all.length; render(); });
+  }
+
+  function showLogin(msg) {
+    $("app").classList.add("hidden"); $("login").classList.remove("hidden");
+    $("login-err").textContent = msg || "";
+    $("secret").focus();
+  }
+  function showApp() {
+    $("login").classList.add("hidden"); $("app").classList.remove("hidden");
+    load().catch(function (err) { if (err.message === "unauthorized") { secret = ""; try { localStorage.removeItem(KEY); } catch (e) {} showLogin("Wrong secret."); } else { $("meta").textContent = "Load failed: " + err.message; } });
+    schedule();
+  }
+  function schedule() {
+    clearInterval(timer);
+    if ($("auto").checked) timer = setInterval(function () { load().catch(function () {}); }, 60000);
+  }
+
+  $("login-btn").onclick = function () {
+    secret = $("secret").value.trim();
+    if (!secret) return;
+    try { localStorage.setItem(KEY, secret); } catch (e) {}
+    showApp();
+  };
+  $("secret").addEventListener("keydown", function (e) { if (e.key === "Enter") $("login-btn").click(); });
+  $("refresh").onclick = function () { load().catch(function (err) { $("meta").textContent = "Load failed: " + err.message; }); };
+  $("auto").onchange = schedule;
+  $("logout").onclick = function () { secret = ""; try { localStorage.removeItem(KEY); } catch (e) {} clearInterval(timer); showLogin(); };
+  ["range", "type"].forEach(function (id) { $(id).onchange = render; });
+  $("search").oninput = render;
+  $("clear").onclick = function () {
+    if (!clearArmed) { clearArmed = true; this.textContent = "Click again to delete everything"; var b = this; setTimeout(function () { clearArmed = false; b.textContent = "Clear all data"; }, 4000); return; }
+    clearArmed = false; this.textContent = "Clear all data";
+    fetch("/api/events", { method: "DELETE", headers: { Authorization: "Bearer " + secret } }).then(load);
+  };
+
+  if (secret) showApp(); else showLogin();
+})();
+</script>
+</body>
+</html>
