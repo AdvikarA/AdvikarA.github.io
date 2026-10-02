@@ -377,7 +377,15 @@ window.SITE_CONTENT = {
   },
   // ICML 26 is currently private/unpublished. To re-publish, add WRITING_ICML
   // back to `writing` and "icml-26": ESSAY_ICML back to `essays`.
-  writing: [],
+  writing: [
+    {
+      slug: "to-be-a-star-you-must-burn",
+      title: "To be a star, you must burn",
+      date: "October 2026",
+      summary: "lessons from SF",
+      link: "https://advikar.substack.com/p/to-be-a-star-you-must-burn"
+    }
+  ],
   essays: {},
   books: [
     {

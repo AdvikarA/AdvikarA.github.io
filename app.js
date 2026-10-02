@@ -438,7 +438,7 @@
     }
     list.innerHTML = (content.writing || []).map(item => `
       <li>
-        <a class="index-link" href="essay.html?slug=${item.slug}">
+        <a class="index-link" href="${item.link || `essay.html?slug=${item.slug}`}"${item.link ? ' target="_blank" rel="noreferrer"' : ""}>
           <span class="index-title">${item.title}</span>
           <div class="index-meta">${item.date}</div>
           <div class="index-summary">${item.summary}</div>
